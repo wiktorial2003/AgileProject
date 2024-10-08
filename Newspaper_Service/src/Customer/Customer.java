@@ -73,7 +73,7 @@ public class Customer {
 	}
 
 
-	public boolean isAway() {
+	public boolean getIsAway() {
 		return isAway;
 	}
 

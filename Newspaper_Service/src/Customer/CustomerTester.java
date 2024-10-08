@@ -9,18 +9,19 @@ public class CustomerTester extends TestCase {
 	Expected Output: Customer Object created with id = 0, "John Doe", custAddr = "Athlone", phoneNo = "123456789", isAway = false, subscriptions = irish & forbes
 	*/
 	
-public void testCustomer001() throws CustomerHandler {
+public void testCustomer001() {
 		
 		//Create the Customer Object
 		try {
-			
 			Customer custObj = new Customer("John Doe", "Athlone", 123456789, false, "irish & forbes");
 			
 			// Use getters to check for object creation
 			assertEquals(0, custObj.getId());
-			assertEquals("Jack Daniels", custObj.getName());
+			assertEquals("John Doe", custObj.getName());
 			assertEquals("Athlone", custObj.getAddress());
-			assertEquals("087-123123123", custObj.getPhoneNo());
+			assertEquals(123456789, custObj.getPhoneNo());
+			assertEquals(false, custObj.getIsAway());
+			assertEquals("irish & forbes", custObj.getSubscriptions());
 		}
 		catch (CustomerHandler e) {
 			fail("Exception not expected");
