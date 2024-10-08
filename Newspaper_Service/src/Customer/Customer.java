@@ -10,26 +10,40 @@ public class Customer {
 	private String subscriptions;
 	
 	//In C.R.U.D, the create refers to the constructor
-	Customer(int customer_id,String name, String address, int phoneNo, boolean isAway, String subscriptions) 
+	Customer(String name, String address, int phoneNo, boolean isAway, String subscriptions) throws CustomerHandler 
 	{
+		customer_id = 0;
+		try 
+		{
+			validateName(name);
+			validateAddress(address);
+			validatePhone(phoneNo);
+			validateIsAway(isAway);
+		}
+		catch (CustomerHandler e)
+		{
+			throw e;
+		}
+		
+		
 		//Make try catch or an if block that checks if the values are empty or aren't what they should be? or maybe when object is created make the user in the GUI not be able to type anything
-		this.customer_id = customer_id;
-		this.name = name;
-		this.address = address;
-		this.phoneNo = phoneNo;
-		this.isAway = isAway;
-		this.subscriptions = subscriptions;
+		//customer_id = this.customer_id;
+		name = this.name;
+		address = this.address;
+		phoneNo = this.phoneNo;
+		isAway =  this.isAway;
+		subscriptions = this.subscriptions;
 		
 	}
 	
 	
 
 	// Getters = READ, Setters = UPDATE
-	public int getCustomerId() {
+	public int getId() {
 		return customer_id;
 	}
 
-	public void setCustomerId(int customer_id) {
+	public void setId(int customer_id) {
 		this.customer_id = customer_id;
 	}
 	
@@ -86,7 +100,7 @@ public class Customer {
 	//Validate methods for all properties
 	public static void validateName(String custName) throws CustomerHandler 
 	{
-		// Verify that there is a customer's name between 3 and 50 characters.
+		// Verify that there is a customer's name between 3 and 15 characters.
 		if(custName.isBlank() || custName.isEmpty()) 
 		{
 			throw new CustomerHandler("Customer name cannot be empty!");
@@ -95,9 +109,9 @@ public class Customer {
 		{
 			throw new CustomerHandler("Customer name cannot be less than 3 characters.");
 		}
-		else if(custName.length() > 50) 
+		else if(custName.length() > 15) 
 		{
-			throw new CustomerHandler("Customer name cannot be more than 50 characters.");
+			throw new CustomerHandler("Customer name cannot be more than 15 characters.");
 		} 
 	}
 	
