@@ -81,6 +81,26 @@ public class Customer {
 		c = null;
 	}
 	
+	
+	
+	//Validate methods for all properties
+	public static void validateName(String custName) throws CustomerHandler 
+	{
+		// Verify that there is a customer's name is between 3 and 50 characters.
+		if(custName.isBlank() || custName.isEmpty()) 
+		{
+			throw new CustomerHandler("Customer name cannot be empty!");
+		}
+		else if(custName.length() < 3) 
+		{
+			throw new CustomerHandler("Customer name cannot be less than 3 characters.");
+		}
+		else if(custName.length() < 50) 
+		{
+			throw new CustomerHandler("Customer name cannot be more than 50 characters.");
+		} 
+	}
+	
 
 	public static void main(String[] args) {
 	
