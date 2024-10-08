@@ -86,7 +86,7 @@ public class Customer {
 	//Validate methods for all properties
 	public static void validateName(String custName) throws CustomerHandler 
 	{
-		// Verify that there is a customer's name is between 3 and 50 characters.
+		// Verify that there is a customer's name between 3 and 50 characters.
 		if(custName.isBlank() || custName.isEmpty()) 
 		{
 			throw new CustomerHandler("Customer name cannot be empty!");
@@ -95,12 +95,69 @@ public class Customer {
 		{
 			throw new CustomerHandler("Customer name cannot be less than 3 characters.");
 		}
-		else if(custName.length() < 50) 
+		else if(custName.length() > 50) 
 		{
 			throw new CustomerHandler("Customer name cannot be more than 50 characters.");
 		} 
 	}
 	
+	
+	public static void validateAddress(String custAddress) throws CustomerHandler 
+	{
+		// Verify that there is a customer's address between 5 and 50 characters.
+		if(custAddress.isBlank() || custAddress.isEmpty()) 
+		{
+			throw new CustomerHandler("Customer address cannot be empty!");
+		}
+		else if(custAddress.length() < 3) 
+		{
+			throw new CustomerHandler("Customer name cannot be less than 5 characters.");
+		}
+		else if(custAddress.length() > 50) 
+		{
+			throw new CustomerHandler("Customer name cannot be more than 50 characters.");
+		} 
+	}
+	
+	public static void validatePhone(int custPhoneNumber) throws CustomerHandler 
+	{
+		// Verify that there is a customer's phone number and its 9 characters.
+		else if(custPhoneNumber < 9) 
+		{
+			throw new CustomerHandler("Customer phone number cannot be less than 9 characters.");
+		}
+		else if(custPhoneNumber > 9) 
+		{
+			throw new CustomerHandler("Customer phone number cannot be more than 9 characters.");
+		} 
+	}
+	
+	public static void validateIsAway(bool custIsAway) throws CustomerHandler 
+	{
+		// Verify that there is a customer "Is Away" boolean and it is either true or false.
+		if(custIsAway != true && custIsAway != false) 
+		{
+			throw new CustomerHandler("Customer 'is Away' has to be true or false.");
+		}
+	}
+	
+	//Check with team if we are using this field as a "field" or as an entity.
+	/*public static void validateSubscription(String custSub) throws CustomerHandler 
+	{
+		// Verify that there is a customer's subscription between 5 and 50 characters.
+		if(custSub.isBlank() || custSub.isEmpty()) 
+		{
+			throw new CustomerHandler("Customer subscriptions cannot be empty!");
+		}
+		else if(custSub.length() < 5) 
+		{
+			throw new CustomerHandler("Customer subscriptions cannot be less than 5 characters.");
+		}
+		else if(custSub.length() > 50) 
+		{
+			throw new CustomerHandler("Customer subscriptions cannot be more than 50 characters.");
+		} 
+	}*/
 
 	public static void main(String[] args) {
 	
