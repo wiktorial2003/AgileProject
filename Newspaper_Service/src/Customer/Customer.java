@@ -122,7 +122,7 @@ public class Customer {
 	public static void validatePhone(int custPhoneNumber) throws CustomerHandler 
 	{
 		// Verify that there is a customer's phone number and its 9 characters.
-		else if(custPhoneNumber < 9) 
+		if(custPhoneNumber < 9) 
 		{
 			throw new CustomerHandler("Customer phone number cannot be less than 9 characters.");
 		}
@@ -132,7 +132,7 @@ public class Customer {
 		} 
 	}
 	
-	public static void validateIsAway(bool custIsAway) throws CustomerHandler 
+	public static void validateIsAway(boolean custIsAway) throws CustomerHandler 
 	{
 		// Verify that there is a customer "Is Away" boolean and it is either true or false.
 		if(custIsAway != true && custIsAway != false) 
