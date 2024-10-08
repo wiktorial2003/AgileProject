@@ -1,3 +1,4 @@
+package Publication;
 
 public class Publication {
 
