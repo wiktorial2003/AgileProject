@@ -18,16 +18,12 @@ public class Customer {
 			validateName(name);
 			validateAddress(address);
 			validatePhone(phoneNo);
-			validateIsAway(isAway);
 		}
 		catch (CustomerHandler e)
 		{
 			throw e;
 		}
-		
-		
-		//Make try catch or an if block that checks if the values are empty or aren't what they should be? or maybe when object is created make the user in the GUI not be able to type anything
-		//customer_id = this.customer_id;
+	
 		name = this.name;
 		address = this.address;
 		phoneNo = this.phoneNo;
@@ -118,7 +114,7 @@ public class Customer {
 	
 	public static void validateAddress(String custAddress) throws CustomerHandler 
 	{
-		// Verify that there is a customer's address between 5 and 50 characters.
+		// Verify that there is a customer's address between 5 and 25 characters.
 		if(custAddress.isBlank() || custAddress.isEmpty()) 
 		{
 			throw new CustomerHandler("Customer address cannot be empty!");
@@ -127,9 +123,9 @@ public class Customer {
 		{
 			throw new CustomerHandler("Customer name cannot be less than 5 characters.");
 		}
-		else if(custAddress.length() > 50) 
+		else if(custAddress.length() > 25) 
 		{
-			throw new CustomerHandler("Customer name cannot be more than 50 characters.");
+			throw new CustomerHandler("Customer name cannot be more than 25 characters.");
 		} 
 	}
 	
@@ -146,6 +142,8 @@ public class Customer {
 		} 
 	}
 	
+	/*
+	 * Should we do a validate isaway? values are hard coded... can only be true or false
 	public static void validateIsAway(boolean custIsAway) throws CustomerHandler 
 	{
 		// Verify that there is a customer "Is Away" boolean and it is either true or false.
@@ -156,7 +154,7 @@ public class Customer {
 	}
 	
 	//Check with team if we are using this field as a "field" or as an entity.
-	/*public static void validateSubscription(String custSub) throws CustomerHandler 
+	public static void validateSubscription(String custSub) throws CustomerHandler 
 	{
 		// Verify that there is a customer's subscription between 5 and 50 characters.
 		if(custSub.isBlank() || custSub.isEmpty()) 

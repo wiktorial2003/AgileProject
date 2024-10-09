@@ -95,6 +95,115 @@ public void testCustomer001() {
 		
 	}
 	
+	/*
+	Test #: 5
+	Test Objective: Catch invalid customer address
+	Inputs: name = "a"
+	Expected Output: Exception Message -> "Customer name cannot be less than 5 characters."
+	*/
+	
+	public void testValidateAddress001() throws CustomerHandler {
+		
+		//Test to catch invalid customer name
+		try {
+			
+			//Call method under test
+			Customer.validateAddress("a");
+			fail("Exception not expected");
+		}
+		catch (CustomerHandler e) {
+			assertEquals("Customer name cannot be less than 5 characters.", e.getMessage());
+		}
+		
+	}
+	
+	/*
+	Test #: 6
+	Test Objective: Catch invalid customer address
+	Inputs: name = "thisisatestforthevalidateaddress"
+	Expected Output: Exception Message -> "Customer name cannot be more than 25 characters."
+	*/
+	
+	public void testValidateAddress002() throws CustomerHandler {
+		
+		//Test to catch invalid customer name
+		try {
+			
+			//Call method under test
+			Customer.validateAddress("thisisatestforthevalidateaddress");
+			fail("Exception not expected");
+		}
+		catch (CustomerHandler e) {
+			assertEquals("Customer name cannot be more than 25 characters.", e.getMessage());
+		}
+		
+	}
+	
+	/*
+	Test #: 7
+	Test Objective: Catch invalid customer address
+	Inputs: name = "" (empty!)
+	Expected Output: Exception Message -> "Customer address cannot be empty!"
+	*/
+	
+	public void testValidateAddress003() throws CustomerHandler {
+		
+		//Test to catch invalid customer name
+		try {
+			
+			//Call method under test
+			Customer.validateAddress("");
+			fail("Exception not expected");
+		}
+		catch (CustomerHandler e) {
+			assertEquals("Customer address cannot be empty!", e.getMessage());
+		}
+		
+	}
+	
+	/*
+	Test #: 8
+	Test Objective: Catch invalid customer phone number
+	Inputs: name = 1
+	Expected Output: Exception Message -> "Customer phone number cannot be less than 9 characters."
+	*/
+	
+	public void testValidatePhoneNo001() throws CustomerHandler {
+		
+		//Test to catch invalid customer name
+		try {
+			
+			//Call method under test
+			Customer.validatePhone(1);
+			fail("Exception not expected");
+		}
+		catch (CustomerHandler e) {
+			assertEquals("Customer phone number cannot be less than 9 characters.", e.getMessage());
+		}
+		
+	}
+	
+	/*
+	Test #: 9
+	Test Objective: Catch invalid customer phone number
+	Inputs: name = 1234567891
+	Expected Output: Exception Message -> "Customer phone number cannot be more than 9 characters."
+	*/
+	
+	public void testValidatePhoneNo002() throws CustomerHandler {
+		
+		//Test to catch invalid customer name
+		try {
+			
+			//Call method under test
+			Customer.validatePhone(1234567891);
+			fail("Exception not expected");
+		}
+		catch (CustomerHandler e) {
+			assertEquals("Customer phone number cannot be more than 9 characters.", e.getMessage());
+		}
+		
+	}
 	
 	public static void main(String[] args) {
 		
