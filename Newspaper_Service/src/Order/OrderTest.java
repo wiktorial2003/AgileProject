@@ -199,6 +199,7 @@ try {
 catch (OrderHandler e) {
 	assertEquals("Publication name can't be less than 3 characters", e.getMessage());
 }
+}
 
 /*
 Test #: 9
