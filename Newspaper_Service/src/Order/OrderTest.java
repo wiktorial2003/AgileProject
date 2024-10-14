@@ -175,7 +175,7 @@ try {
 	fail("Exception not expected");
 }
 catch (OrderHandler e) {
-	assertEquals("Publication field cannot be empty!", e.getMessage());
+	assertEquals("Publication field cannot be empty! change test", e.getMessage());
 }
 
 }
@@ -198,6 +198,7 @@ try {
 }
 catch (OrderHandler e) {
 	assertEquals("Publication name can't be less than 3 characters", e.getMessage());
+}
 }
 
 /*
