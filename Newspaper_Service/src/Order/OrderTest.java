@@ -189,15 +189,16 @@ Expected Output: Exception Message -> Publication name can't be less than 3 char
 
 public void testValidatePublication002() throws OrderHandler {
 
-//Test to catch invalid customer name
-try {
-	
-	//Call method under test
-	Order.validatePublication("ab");
-	fail("Exception not expected");
-}
-catch (OrderHandler e) {
-	assertEquals("Publication name can't be less than 3 characters", e.getMessage());
+	//Test to catch invalid customer name
+	try {
+		
+		//Call method under test
+		Order.validatePublication("ab");
+		fail("Exception not expected");
+	}
+	catch (OrderHandler e) {
+		assertEquals("Publication name can't be less than 3 characters", e.getMessage());
+	}
 }
 
 /*
