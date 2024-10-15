@@ -1,5 +1,6 @@
 package Customer;
 
+import java.time.*;
 public class Customer {
 
 	private int customer_id; // should this be in the object or?
@@ -7,8 +8,10 @@ public class Customer {
 	private String address;
 	private int phoneNo;
 	private boolean isAway;
+	private LocalDate startDate; // Getters, Setters, JUnits and Test Design not written for this
+	private LocalDate endDate; // Getters, Setters, JUnits and Test Design not written for this
 	private String subscriptions;
-	
+
 	//In C.R.U.D, the create refers to the constructor
 	Customer(String name, String address, int phoneNo, boolean isAway, String subscriptions) throws CustomerHandler 
 	{
@@ -77,13 +80,6 @@ public class Customer {
 		this.isAway = isAway;
 	}
 
-	public String getSubscriptions() {
-		return subscriptions;
-	}
-
-	public void setSubscriptions(String subscriptions) {
-		this.subscriptions = subscriptions;
-	}
 
 	//Delete in C.R.U.D.
 	public void deleteCustomer(Customer c) 
@@ -142,37 +138,8 @@ public class Customer {
 		} 
 	}
 	
-	/*
-	 * Should we do a validate isaway? values are hard coded... can only be true or false
-	public static void validateIsAway(boolean custIsAway) throws CustomerHandler 
-	{
-		// Verify that there is a customer "Is Away" boolean and it is either true or false.
-		if(custIsAway != true && custIsAway != false) 
-		{
-			throw new CustomerHandler("Customer 'is Away' has to be true or false.");
-		}
-	}
-	
-	//Check with team if we are using this field as a "field" or as an entity.
-	public static void validateSubscription(String custSub) throws CustomerHandler 
-	{
-		// Verify that there is a customer's subscription between 5 and 50 characters.
-		if(custSub.isBlank() || custSub.isEmpty()) 
-		{
-			throw new CustomerHandler("Customer subscriptions cannot be empty!");
-		}
-		else if(custSub.length() < 5) 
-		{
-			throw new CustomerHandler("Customer subscriptions cannot be less than 5 characters.");
-		}
-		else if(custSub.length() > 50) 
-		{
-			throw new CustomerHandler("Customer subscriptions cannot be more than 50 characters.");
-		} 
-	}*/
 
 	public static void main(String[] args) {
-	
 	}
 
 }

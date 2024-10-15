@@ -21,7 +21,6 @@ public void testCustomer001() {
 			assertEquals("Athlone", custObj.getAddress());
 			assertEquals(123456789, custObj.getPhoneNo());
 			assertEquals(false, custObj.getIsAway());
-			assertEquals("irish & forbes", custObj.getSubscriptions());
 		}
 		catch (CustomerHandler e) {
 			fail("Exception not expected");
