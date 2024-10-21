@@ -7,7 +7,7 @@ public class Customer {
 	private String address;
 	private int phoneNo;
 	private boolean isAway;
-	private String subscriptions;
+	
 	
 	//In C.R.U.D, the create refers to the constructor
 	Customer(String name, String address, int phoneNo, boolean isAway, String subscriptions) throws CustomerHandler 
@@ -28,7 +28,7 @@ public class Customer {
 		address = this.address;
 		phoneNo = this.phoneNo;
 		isAway =  this.isAway;
-		subscriptions = this.subscriptions;
+	
 		
 	}
 	
@@ -77,13 +77,7 @@ public class Customer {
 		this.isAway = isAway;
 	}
 
-	public String getSubscriptions() {
-		return subscriptions;
-	}
-
-	public void setSubscriptions(String subscriptions) {
-		this.subscriptions = subscriptions;
-	}
+	
 
 	//Delete in C.R.U.D.
 	public void deleteCustomer(Customer c) 
