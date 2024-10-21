@@ -3,21 +3,21 @@ package Order;
 public class Order {
 	
 	private static int order_id; // in the object?
-	//include customer id?
+	// customer id?
 	private double price;
 	private int quantity_pub;
 	private String del_date;
-	private String publication;
+	private int pub_id;
 	
 	
 	//CReate
-	public Order(int order_id, double price, int quantity_pub, String del_date, String publication) {
+	public Order(int order_id, double price, int quantity_pub, String del_date, int pub_id) {
 		super();
 		this.order_id = order_id;
 		this.price = price;
 		this.quantity_pub = quantity_pub;
 		this.del_date = del_date;
-		this.publication = publication;
+		this.pub_id = pub_id;
 	}
 	
 	
@@ -54,12 +54,12 @@ public class Order {
 		this.del_date = del_date;
 	}
 
-	public String getPublication() {
-		return publication;
+	public int getpub_id() {
+		return pub_id;
 	}
 
-	public void setPublication(String publication) {
-		this.publication = publication;
+	public void setpub_id(int pub_id) {
+		this.pub_id = pub_id;
 	}
 	
 	/*skeleton for delete
@@ -113,21 +113,17 @@ public class Order {
 	//Validate date -> unsure how to
 	
 	
-	//need array for pub list too
-		public static void validatePublication(String pub) throws OrderHandler 
+	//need array for pub list too?
+		public static void validatepub_id(int pub_id) throws OrderHandler 
 		{
-			// publication name between 3 and 15 characters.
-			if(pub.isBlank() || pub.isEmpty()) 
+			// pub_id name between 3 and 15 characters.
+			if(pub_id < 1) 
 			{
-				throw new OrderHandler("Publication field cannot be empty!");
+				throw new OrderHandler("Publication Id must be at least 1 digit long and starts at 1");
 			}
-			else if(pub.length() < 3) 
+			else if(pub_id > 1000000000) 
 			{
-				throw new OrderHandler("Publication name can't be less than 3 characters.");
-			}
-			else if(pub.length() > 15) 
-			{
-				throw new OrderHandler("Publication name can't be more than 15 characters.");
+				throw new OrderHandler("Publication Id cannot be more than 10 digits long and msut be less than 1000000000");
 			} 
 		}
 
