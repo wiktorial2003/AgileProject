@@ -75,19 +75,19 @@ public class CommandLineC {
 				functionNumber = keyboard.next();
 		
 				switch (functionNumber) {
-		
-				case "1":
-					//Get Customer Details from the User
-					System.out.printf("Enter Customer Name: \n");
-					String custName = keyboard.next();
-					System.out.printf("Enter Customer Address: \n");
-					String custAddr = keyboard.next();
-					System.out.printf("Enter Customer PhoneNumber: \n");
-					String custphoneNumber = keyboard.next();
-				
-					//Customer custObj = new Customer(name,address,phoneNo,isAway,subscriptions);
-				
-					//Insert Customer Details into the database
+//		
+//				case "1":
+//					//Get Customer Details from the User
+//					System.out.printf("Enter Customer Name: \n");
+//					String custName = keyboard.next();
+//					System.out.printf("Enter Customer Address: \n");
+//					String custAddr = keyboard.next();
+//					System.out.printf("Enter Customer PhoneNumber: \n");
+//					String custphoneNumber = keyboard.next();
+//				
+//					Customer custObj = new Customer(name,address,phoneNo,isAway,subscriptions);
+//				
+//					//Insert Customer Details into the database
 //					boolean insertResult = dao.insertCustomerDetailsAccount(custObj);
 //					if (insertResult == true)
 //						System.out.println("Customer Details Saved");

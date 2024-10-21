@@ -12,7 +12,7 @@ public class CommandLineO {
 		System.out.println("Please choose ONE of the following options:");
 		System.out.println("1. Create an Order");
 		System.out.println("2. View ALL Order Records");
-		System.out.println("3. Delete and Order by ID");
+		System.out.println("3. Delete an Order by ID");
 		System.out.println("99. Close the Application");
 		System.out.println("=============================================");
 		System.out.println(" ");
