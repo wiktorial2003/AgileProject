@@ -46,7 +46,7 @@ public class OrderTest extends TestCase {
 
 	public void testValidateID001() throws OrderHandler {
 
-// Test to catch invalid customer name 
+//  
 
 		try {
 
@@ -110,7 +110,7 @@ public class OrderTest extends TestCase {
 
 	public void testValidateID003() {
 
-//Test to catch invalid customer name 
+
 
 		try {
 
@@ -302,162 +302,89 @@ public class OrderTest extends TestCase {
 
 	}
 
-///* 
-//
-// * Test #: 11 Test Objective: Catch invalid publication Inputs: id = "" Expected 
-//
-// * Output: Exception Message -> Publication field cannot be empty! 
-//
-// */ 
-//
-//  
-//
-//public void testValidatePublication001() throws OrderHandler { 
-//
-//  
-//
-////Test to catch invalid customer name 
-//
-//try { 
-//
-//  
-//
-//// Call method under test 
-//
-//Order.validatePublication(""); 
-//
-//fail("Exception not expected"); 
-//
-//} catch (OrderHandler e) { 
-//
-//assertEquals("Publication field cannot be empty!", e.getMessage()); 
-//
-//  
-//
-//assertEquals("Publication field cannot be empty! change test", e.getMessage()); 
-//
-//} 
-//
-//  
-//
-//} 
-//
-//  
-//
-///* 
-//
-// * Test #: 12 Test Objective: Catch invalid publication Inputs: id = "ab" 
-//
-// * Expected Output: Exception Message -> Publication name can't be less than 3 
-//
-// * characters! 
-//
-// */ 
-//
-//  
-//
-//public void testValidatePublication002() throws OrderHandler { 
-//
-//  
-//
-//// Test to catch invalid customer name 
-//
-//try { 
-//
-//  
-//
-//// Call method under test 
-//
-//Order.validatePublication("ab"); 
-//
-//fail("Exception not expected"); 
-//
-//} catch (OrderHandler e) { 
-//
-//assertEquals("Publication name can't be less than 3 characters", e.getMessage()); 
-//
-//} 
-//
-//} 
-//
-//  
-//
-///* 
-//
-// * Test #: 13 Test Objective: Catch invalid publication  
-//
-// * Inputs: id ="abcdefghijklmnopq"  
-//
-// * Expected Output: Exception Message -> Publication name 
-//
-// * can't be more than 15 characters. 
-//
-// */ 
-//
-//  
-//
-//public void testValidatePublication003() throws OrderHandler { 
-//
-//  
-//
-////Test to catch invalid customer name 
-//
-//try { 
-//
-//  
-//
-//// Call method under test 
-//
-//Order.validatePublication("abcdefghijklmnopq"); 
-//
-//fail("Exception not expected"); 
-//
-//} catch (OrderHandler e) { 
-//
-//assertEquals("Publication name can't be more than 15 characters.", e.getMessage()); 
-//
-//} 
-//
-//  
-//
-//} 
-//
-// 
-//
-///* 
-//
-// * Test #: 14 Test Objective: Catch invalid publication  
-//
-// * Inputs: id = "newspaper"  
-//
-// * Expected Output:  
-//
-// */ 
-//
-//  
-//
-//public void testValidatePublication004(){ 
-//
-//  
-//
-////Test to catch invalid customer name 
-//
-//try { 
-//
-//  
-//
-//// Call method under test 
-//
-//Order.validatePublication("newspaper"); 
-//
-//} catch (OrderHandler e) { 
-//
-//assertEquals("Publication name can't be more than 15 characters.", e.getMessage()); 
-//
-//} 
-//
-//  
-//
-//} 
+	/*
+	 * 
+	 * Test #: 11 Test Objective: Catch invalid publication Inputs: id = "" Expected
+	 * 
+	 * Output: Exception Message ->Publication Id must be at least 1 digit long and starts at 1"
+	 * 
+	 */
+
+	public void testvalidatepub_id001() throws OrderHandler {
+
+		try {
+
+// Call method under test 
+
+			Order.validatepub_id(0);
+
+			fail("Exception not expected");
+
+		} catch (OrderHandler e) {
+
+
+			assertEquals("Publication Id must be at least 1 digit long and starts at 1", e.getMessage());
+
+		}
+
+	}
+
+	/*
+	 * 
+	 * Test #: 12 Test Objective: Catch invalid publication Inputs: id = 1000000001
+	 * 
+	 * Expected Output: Exception Message -> Publication Id cannot be more than 10 digits long and msut be less than 1000000000"
+	 * 
+	 * characters!
+	 * 
+	 */
+
+	public void testvalidatepub_id002() throws OrderHandler {
+
+		try {
+
+// Call method under test 
+
+			Order.validatepub_id(1000000001);
+
+			fail("Exception not expected");
+
+		} catch (OrderHandler e) {
+
+			assertEquals("Publication Id cannot be more than 10 digits long and msut be less than 1000000000", e.getMessage());
+
+		}
+
+	}
+
+	/*
+	 * 
+	 * Test #: 13 Test Objective: Catch invalid publication
+	 * 
+	 * Inputs: id =1
+	 * 
+	 * Expected Output: id =1
+	 * 
+	 */
+
+	public void testvalidatepub_id003() throws OrderHandler {
+
+//Test to catch invalid customer name 
+
+		try {
+
+// Call method under test 
+
+			Order.validatepub_id(1);
+
+
+		} catch (OrderHandler e) {
+
+			assertEquals("Publication name can't be more than 15 characters.", e.getMessage());
+
+		}
+
+	}
+
 
 }
