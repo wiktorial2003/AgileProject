@@ -57,7 +57,7 @@ public class DeliveryDocket {
     }
 
     public DeliveryDocket(int dockId, int custID, int ordNum, String custName, String custAddr, String custPhone)
-            throws CustomerHandler {
+            throws DocketHandler {
 
         try {
             validateDeliveryDocketId(dockId);
@@ -73,54 +73,77 @@ public class DeliveryDocket {
             this.name = custName;
             this.address = custAddr;
             this.phoneNumber = custPhone;
-        } catch (CustomerHandler e) {
+        } catch (DocketHandler e) {
             throw e;
         }
     }
 
-    private void validateOrderNumber(int ordNum) throws CustomerHandler {
+    private void validateOrderNumber(int ordNum) throws DocketHandler {
         if (ordNum <= 0) {
-            throw new CustomerHandler("Order number must be greater than 0.");
+            throw new DocketHandler("Order number must be greater than 0.");
         }
     }
 
-    private void validateCustomerID(int custId) throws CustomerHandler {
+    private void validateCustomerID(int custId) throws DocketHandler {
         if (custId <= 0) {
-            throw new CustomerHandler("Customer ID must be greater than 0.");
+            throw new DocketHandler("Customer ID must be greater than 0.");
         }
     }
 
-    private void validateDeliveryDocketId(int dockId) throws CustomerHandler {
+    private void validateDeliveryDocketId(int dockId) throws DocketHandler {
         if (dockId <= 0) {
-            throw new CustomerHandler("Delivery docket ID must be greater than 0.");
+            throw new DocketHandler("Delivery docket ID must be greater than 0.");
         }
     }
 
-    public static void validateName(String custName) throws CustomerHandler {
+    public static void validateName(String custName) throws DocketHandler {
         if (custName == null || custName.trim().isEmpty()) {
-            throw new CustomerHandler("Customer name cannot be empty.");
+            throw new DocketHandler("Customer name cannot be empty.");
+        }
+        else if (custName.length()<3)
+        {
+        	throw new DocketHandler("Customer name too cannot be less than 3 characters");
+        }
+        else if (custName.length()>15)
+        {
+        	throw new DocketHandler("Customer name cannot be more than 15 characters");
         }
     }
 
-    public static void validateAddress(String custAddr) throws CustomerHandler {
+    public static void validateAddress(String custAddr) throws DocketHandler {
         if (custAddr == null || custAddr.trim().isEmpty()) {
-            throw new CustomerHandler("Address cannot be empty.");
+            throw new DocketHandler("Address cannot be empty.");
+        }
+        else if (custAddr.length()<3)
+        {
+        	throw new DocketHandler("Customer address cannot be less than 3 characters");
+        }
+        else if (custAddr.length()>25)
+        {
+        	throw new DocketHandler("Customer address should be longer than 25 characters");
         }
     }
 
-    public static void validatePhoneNumber(String custPhone) throws CustomerHandler {
+    public static void validatePhoneNumber(String custPhone) throws DocketHandler {
         if (custPhone == null || custPhone.trim().isEmpty()) {
-            throw new CustomerHandler("Phone number cannot be empty.");
+            throw new DocketHandler("Phone number cannot be empty.");
+        }
+        else if (custPhone.length()<9)
+        {
+        	throw new DocketHandler("Phone number should be 9 digits");
+        }
+        else if (custPhone.length()>9)
+        {
+        	throw new DocketHandler("Phone number should be 9 digits");
         }
     }
 }
 
-// You need to define the CustomerHandler class to make this functional
-class CustomerHandler extends Exception {
-    public CustomerHandler(String message) {
-        super(message);
-    }
-}
+// You need to define the DocketHandler class to make this functional
+//class DocketHandler extends Exception {
+//    public DocketHandler(String message) {
+//        super(message);
+//    }}
 
 
 

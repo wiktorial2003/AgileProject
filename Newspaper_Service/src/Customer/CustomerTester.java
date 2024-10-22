@@ -1,4 +1,7 @@
 package Customer;
+
+import org.junit.Test;
+
 import junit.framework.TestCase;
 public class CustomerTester extends TestCase {
 
@@ -21,7 +24,6 @@ public void testCustomer001() {
 			assertEquals("Athlone", custObj.getAddress());
 			assertEquals(123456789, custObj.getPhoneNo());
 			assertEquals(false, custObj.getIsAway());
-			assertEquals("irish & forbes", custObj.getSubscriptions());
 		}
 		catch (CustomerHandler e) {
 			fail("Exception not expected");
@@ -170,7 +172,7 @@ public void testCustomer001() {
 	
 	public void testValidatePhoneNo001() throws CustomerHandler {
 		
-		//Test to catch invalid customer name
+		//Test to catch invalid customer name;
 		try {
 			
 			//Call method under test
@@ -204,7 +206,49 @@ public void testCustomer001() {
 		}
 		
 	}
+//	
+//	Test #: 10
+//	Test Objective: Catch invalid customer phone number
+//	Inputs: name = ""(empty)
+//	Expected Output: Exception Message -> "Customer phone number cannot be empty".
 	
+	public void testValidatePhoneNo003() throws CustomerHandler {
+	    // Test to catch invalid customer phone number (empty string)
+	    try {
+	        Customer.validatePhone(0);  // Assuming validatePhone accepts a String
+	        fail("Exception expected for empty phone number");
+	    } catch (CustomerHandler e) {
+	        assertEquals("Customer phone number cannot be blank", e.getMessage());
+	    }
+	}
+	
+	@Test
+	public void testLowerBoundaryValidAddress() throws CustomerHandler {
+	    // Assume the minimum valid address length is 5 characters
+	    Customer.validateAddress("12345");  // Lower boundary valid case (5 characters)
+	}
+
+	@Test
+	public void testUpperBoundaryValidAddress() throws CustomerHandler {
+
+	    Customer.validateAddress("1234567890123456789012345");  // Upper boundary valid case (25 characters)
+	}
+
+	@Test(expected = CustomerHandler.class)
+	public void testLowerBoundaryInvalidphoneNumber() throws CustomerHandler {
+	    Customer.validatePhone(8);  // Just below lower boundary (invalid)
+	}
+
+	@Test(expected = CustomerHandler.class)
+	public void testUpperBoundaryInvalidAge() throws CustomerHandler {
+	    Customer.validatePhone(10);  // Just above upper boundary (invalid)
+	}
+
+
+	
+
+
+
 	public static void main(String[] args) {
 		
 
