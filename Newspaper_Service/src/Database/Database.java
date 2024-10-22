@@ -4,13 +4,13 @@ import java.sql.*;
 
 public class Database 
 {
-	private static String url = "jbdc:mysql://localhost:3306/newspaper_db_1?useTimezone=true&serverTimezone=UTC";
-	private static String username = "root";
-	private static String password = "root";
-	private static String driverName = "com.mysql.cj.jbdc.Driver";
-	private static Connection con;
-	private static String urlstring;
-	public static Connection init_db() 
+	private String url = "jdbc:mysql://localhost:3306/newspaper_db_1?useTimezone=true&serverTimezone=UTC";
+	private String username = "root";
+	private String password = "root";
+	private String driverName = "com.mysql.cj.jdbc.Driver";
+	private Connection con;
+	
+	public Connection init_db() 
 	{
 	
 		try 
@@ -18,7 +18,7 @@ public class Database
 			Class.forName(driverName);
 			try 
 			{
-				con = DriverManager.getConnection(url, username, password);
+				con = DriverManager.getConnection(url,  username, password);
 				return con;
 			}
 			catch (SQLException ex) 
@@ -35,27 +35,30 @@ public class Database
 		}
 		
 	}
+	
 	public static void main(String[] args) 
 	{
-		Connection con = null;
+		Database db = new Database();
+		Connection con1 = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		try
 		{
-			con = Database.init_db();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM customers");
-		    	rs.next();//move to first row, the query above only produces 1 row
-	    		String myTotal = rs.getString(0);
-	    		System.out.println( myTotal);
+			con1 = db.init_db();
+			rs = stmt.executeQuery("SELECT * from customers");
+			System.out.println(rs.getRow());
+			rs.next();
+			
+
+
 		}
-		catch (SQLException sqle)
+		catch (Exception e)
 		{
 			System.out.println("Error: failed to get number of records");
 		}
 		try
 		{
-			con.close();
+			con1.close();
 		}
 		catch (SQLException sqle)
 		{
