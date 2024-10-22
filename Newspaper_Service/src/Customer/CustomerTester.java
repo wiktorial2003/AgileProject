@@ -16,7 +16,7 @@ public void testCustomer001() {
 		
 		//Create the Customer Object
 		try {
-			Customer custObj = new Customer("John Doe", "Athlone", 123456789, false, "irish & forbes");
+			Customer custObj = new Customer("John Doe", "Athlone", 123456789, false);
 			
 			// Use getters to check for object creation
 			assertEquals(0, custObj.getId());

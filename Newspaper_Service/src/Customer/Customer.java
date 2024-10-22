@@ -18,7 +18,7 @@ public class Customer {
 
 
 	//In C.R.U.D, the create refers to the constructor
-	Customer(String name, String address, int phoneNo, boolean isAway, String subscriptions) throws CustomerHandler 
+	Customer(String name, String address, int phoneNo, boolean isAway) throws CustomerHandler 
 	{
 		customer_id = 0;
 		try 
@@ -32,10 +32,10 @@ public class Customer {
 			throw e;
 		}
 	
-		name = this.name;
-		address = this.address;
-		phoneNo = this.phoneNo;
-		isAway =  this.isAway;
+		this.name = name;
+		this.address = address;
+		this.phoneNo = phoneNo;
+		this.isAway= isAway;
 	
 		
 	}
@@ -132,15 +132,13 @@ public class Customer {
 	
 	public static void validatePhone(int custPhoneNumber) throws CustomerHandler 
 	{
+		int customerLength = String.valueOf(custPhoneNumber).length();
 		// Verify that there is a customer's phone number and its 9 characters.
-		if(custPhoneNumber < 9) 
+		if(customerLength != 9) 
 		{
-			throw new CustomerHandler("Customer phone number cannot be less than 9 characters.");
+			throw new CustomerHandler("Customer phone number has to be 9 integers.");
 		}
-		else if(custPhoneNumber > 9) 
-		{
-			throw new CustomerHandler("Customer phone number cannot be more than 9 characters.");
-		} 
+
 	}
 	
 
