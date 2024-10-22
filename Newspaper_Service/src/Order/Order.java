@@ -1,9 +1,9 @@
-package Order;
+ package Order;
 
 public class Order {
 	
 	private static int order_id; // in the object?
-	// customer id?
+	private int cus_id;
 	private double price;
 	private int quantity_pub;
 	private String del_date;
@@ -12,7 +12,6 @@ public class Order {
 	
 	//CReate
 	public Order(int order_id, double price, int quantity_pub, String del_date, int pub_id) {
-		super();
 		this.order_id = order_id;
 		this.price = price;
 		this.quantity_pub = quantity_pub;
@@ -62,11 +61,11 @@ public class Order {
 		this.pub_id = pub_id;
 	}
 	
-	/*skeleton for delete
+	
 	public void deleteOrder(Order o) 
 	{
-		
-	}*/
+		o = null;
+	}
 	
 	//Add validate methods
 
