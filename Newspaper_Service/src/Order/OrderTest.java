@@ -6,23 +6,23 @@ public class OrderTest extends TestCase {
 
 	/*
 	 * 
-	 * Test #: 1 Test Objective: Create an Order Inputs: id = 1, price = 4.50,
+	 * Test #: 1 Test Objective: Create an Order Inputs: id = 1, cus_id = 20, price = 4.50,
 	 * 
-	 * quantity = 4, del date = "10/11/24" publications = "irish times" Expected
+	 * quantity = 4, del date = "10/11/24" publication id= 14 
+	 *  Expected Output: Order Object created with d = 1, price = 11.50, quantity = 4, del
 	 * 
-	 * Output: Order Object created with d = 1, price = 11.50, quantity = 4, del
-	 * 
-	 * date = "10/11/24" publications = "irish times"
+	 * date = "10/11/24" publication id = 14
 	 * 
 	 */
 
 	public void testOrder001() throws OrderHandler {
 
-		Order ordObj = new Order(1, 4.50, 4, "10/11/24", 14);
+		Order ordObj = new Order(20, 4.50, 4, "10/11/24", 14);
 
 // Use getters to check for object creation 
 
-		assertEquals(1, ordObj.getOrder_id());
+		//assertEquals(1, ordObj.getOrder_id());
+		assertEquals(20, ordObj.getCus_id());
 
 		assertEquals(4.50, ordObj.getPrice());
 
@@ -30,7 +30,7 @@ public class OrderTest extends TestCase {
 
 		assertEquals("10/11/24", ordObj.getDel_date());
 
-		assertEquals(14, ordObj.getpub_id());
+		assertEquals(14, ordObj.getPub_id());
 
 	}
 
@@ -162,9 +162,9 @@ public class OrderTest extends TestCase {
 
 	/*
 	 * 
-	 * Test #: 6 Test Objective: Catch invalid Price Inputs: id = 1000000001
+	 * Test #: 6 Test Objective: Catch invalid Price Inputs: id = 100.01
 	 * 
-	 * Expected Output: Exception Message -> Price msut be less than 1000000000
+	 * Expected Output: Exception Message -> Price msut be less than 100
 	 * 
 	 */
 
@@ -176,13 +176,13 @@ public class OrderTest extends TestCase {
 
 // Call method under test 
 
-			Order.validatePrice(1000000001);
+			Order.validatePrice(100.01);
 
 			fail("Exception not expected");
 
 		} catch (OrderHandler e) {
 
-			assertEquals("Price must be less than 1000000000", e.getMessage());
+			assertEquals("Price must be less than 100.00", e.getMessage());
 
 		}
 
@@ -210,7 +210,7 @@ public class OrderTest extends TestCase {
 
 		} catch (OrderHandler e) {
 
-			assertEquals("Price must be less than 1000000000", e.getMessage());
+			assertEquals("Price must be less than 100.01", e.getMessage());
 
 		}
 

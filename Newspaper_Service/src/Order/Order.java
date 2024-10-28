@@ -11,22 +11,43 @@ public class Order {
 	
 	
 	//CReate
-	public Order(int order_id, double price, int quantity_pub, String del_date, int pub_id) {
-		this.order_id = order_id;
+	public Order(int cus_id, double price, int quantity_pub, String del_date, int pub_id) throws OrderHandler {
+		order_id = 0;
+		
+		try{
+			validatePrice(price);
+			validateQuantity(quantity_pub);
+			validatepub_id(pub_id);
+		}
+		catch(OrderHandler e)
+		{
+			throw e;
+		}
+		
 		this.price = price;
 		this.quantity_pub = quantity_pub;
 		this.del_date = del_date;
 		this.pub_id = pub_id;
-	}
-	
-	
-	//get = read set = update
-	public int getOrder_id() {
-		return order_id;
+		this.cus_id = cus_id;
 	}
 
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
+
+	//get = read set = update
+//	public int getOrder_id() {
+//		return order_id;
+//	}
+//
+//	public void setOrder_id(int order_id) {
+//		this.order_id = order_id;
+//	}
+	
+	public int getCus_id() {
+		return cus_id;
+	}
+
+
+	public void setCus_id(int cus_id) {
+		this.cus_id = cus_id;
 	}
 
 	public double getPrice() {
@@ -52,15 +73,16 @@ public class Order {
 	public void setDel_date(String del_date) {
 		this.del_date = del_date;
 	}
-
-	public int getpub_id() {
+	
+	public int getPub_id() {
 		return pub_id;
 	}
 
-	public void setpub_id(int pub_id) {
+
+	public void setPub_id(int pub_id) {
 		this.pub_id = pub_id;
 	}
-	
+
 	
 	public void deleteOrder(Order o) 
 	{
@@ -82,17 +104,31 @@ public class Order {
 					throw new OrderHandler("Order Id cannot be more than 10 digits long and msut be less than 1000000000");
 				} 
 	}
+	//do i need to validate cus id? or ois it handle in customer
+	
+//	public static void validateCusID(int cusId)throws OrderHandler 
+//	{
+//		// Verify that there is a order ID between 1 and 10 ints.
+//				 if(cusId < 1) 
+//				{
+//					throw new OrderHandler("Customer Id must be at least 1 digit long and starts at 1");
+//				}
+//				else if(cusId > 1000000000) 
+//				{
+//					throw new OrderHandler("Customer Id cannot be more than 10 digits long and msut be less than 1000000000");
+//				} 
+//	}
 
 
 	public static void validatePrice(double price)throws OrderHandler {
 		// Verify that there is a price as a double greater than 0.00 and less than 1000000000.00.
-		 if(price < 0.00) 
+		 if(price <= 0.00) 
 		{
 			throw new OrderHandler("Price must be greater than 0");
 		}
-		else if(price > 1000000000) //check limits with team
+		else if(price > 100.1) //check limits with team
 		{
-			throw new OrderHandler("Price must be less than 1000000000");
+			throw new OrderHandler("Price must be less than 100.00");
 		} 
 		
 	}
@@ -111,8 +147,8 @@ public class Order {
 	
 	//Validate date -> unsure how to
 	
+	//validate or just increment?
 	
-	//need array for pub list too?
 		public static void validatepub_id(int pub_id) throws OrderHandler 
 		{
 			// pub_id name between 3 and 15 characters.
