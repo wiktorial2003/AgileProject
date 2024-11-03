@@ -111,23 +111,23 @@ public class Invoice {
 	
 	
 	//need array for pub list too
-//		public static void validatePublication(String pub) throws InvoiceHandler 
-//		{
-//			// publication name between 3 and 15 characters.
-//			if(pub.isBlank() || pub.isEmpty()) 
-//			{
-//				throw new InvoiceHandler("Publication field cannot be empty!");
-//			}
-//			else if(pub.length() < 3) 
-//			{
-//				throw new InvoiceHandler("Publication name can't be less than 3 characters.");
-//			}
-//			else if(pub.length() > 15) 
-//			{
-//				throw new InvoiceHandler("Publication name can't be more than 15 characters.");
-//			} 
-//		}
-//	
+		public static void validatePublication(String pub) throws InvoiceHandler 
+		{
+			// publication name between 3 and 15 characters.
+			if(pub.isBlank() || pub.isEmpty()) 
+			{
+				throw new InvoiceHandler("Publication field cannot be empty!");
+			}
+			else if(pub.length() < 3) 
+			{
+				throw new InvoiceHandler("Publication name can't be less than 3 characters.");
+			}
+			else if(pub.length() > 15) 
+			{
+				throw new InvoiceHandler("Publication name can't be more than 15 characters.");
+			} 
+		}
+	
 	
 
 }
