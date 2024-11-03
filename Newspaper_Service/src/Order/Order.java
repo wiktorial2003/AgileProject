@@ -2,7 +2,7 @@
 
 public class Order {
 	
-	private int order_id;
+	private int order_id; // object
 	private int cus_id;
 	private double price;
 	private int quantity_pub;
