@@ -26,6 +26,7 @@ public class Customer {
 			validateName(name);
 			validateAddress(address);
 			validatePhone(phoneNo);
+			validateCustomer(customer_id);
 		}
 		catch (CustomerHandler e)
 		{
@@ -136,7 +137,22 @@ public class Customer {
 		// Verify that there is a customer's phone number and its 9 characters.
 		if(customerLength != 9) 
 		{
-			throw new CustomerHandler("Customer phone number has to be 9 integers.");
+			throw new CustomerHandler("Customer phone number has to be 9 digits.");
+		}
+
+	}
+	
+	public static void validateCustomer(int custID) throws CustomerHandler
+	{
+		int customerLength = String.valueOf(custID).length();
+		// Verify that there is a customer's phone number and its 9 characters.
+		if(customerLength < 4) 
+		{
+			throw new CustomerHandler("Customer ID cannot be less than 4 digits");
+		}
+		else if(customerLength > 10)
+		{
+			throw new CustomerHandler("Customer ID cannot be more than 10 digits");
 		}
 
 	}
