@@ -12,8 +12,8 @@ public class Customer {
 	
 	
 
-	private LocalDate startDate; // Getters, Setters, JUnits and Test Design not written for this
-	private LocalDate endDate; // Getters, Setters, JUnits and Test Design not written for this
+	private LocalDate isAwayStartDate; // Getters, Setters, JUnits and Test Design not written for this
+	private LocalDate isAwayEndDate; // Getters, Setters, JUnits and Test Design not written for this
 	private String subscriptions;
 
 
