@@ -21,6 +21,7 @@ public class Invoice {
 			validateOrderNum(orderNum);	
 			validateInvoiceDate(invoiceDate);
 			
+			
 		}
 		catch(InvoiceHandler e)
 		{
