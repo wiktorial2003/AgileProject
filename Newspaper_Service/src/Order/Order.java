@@ -2,7 +2,7 @@
 
 public class Order {
 	
-	private static int order_id; // in the object?
+	private int order_id; // object
 	private int cus_id;
 	private double price;
 	private int quantity_pub;
@@ -33,13 +33,13 @@ public class Order {
 
 
 	//get = read set = update
-//	public int getOrder_id() {
-//		return order_id;
-//	}
-//
-//	public void setOrder_id(int order_id) {
-//		this.order_id = order_id;
-//	}
+	public int getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
 	
 	public int getCus_id() {
 		return cus_id;
