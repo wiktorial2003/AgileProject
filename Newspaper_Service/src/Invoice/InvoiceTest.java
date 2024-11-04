@@ -270,7 +270,7 @@ public void testValidateInvoiceDate002() throws InvoiceHandler {
 }
 
 /*
-Test #: 12
+Test #: 13
 Test Objective: Catch invalid order Number
 Inputs: 12
 Expected Output: Exception Message -> "Date cannot be more than 12"
