@@ -1,14 +1,13 @@
 package Publication;
 
-import Order.OrderHandler;
-
 public class Publication {
 
 	private String pubName;
-	private String pubType;
-	private String frequency;
-	private double pubPrice;
 	private int stock;
+	private String pubType;
+	private double pubPrice;
+	private String frequency;
+
 	private int pub_id;
 	
 	

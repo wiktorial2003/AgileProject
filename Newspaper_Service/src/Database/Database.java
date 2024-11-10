@@ -4,6 +4,7 @@ import java.sql.*;
 
 import Customer.Customer;
 import Order.Order;
+import Publication.Publication;
 
 public class Database 
 {
@@ -38,6 +39,8 @@ public class Database
 		}
 		
 	}
+	
+	//CUSTOMER ------------------------------------------------------
 	
 	//Insert a customer in the db getting the customer object
 	
@@ -79,6 +82,44 @@ public class Database
 		}
 		return resultSet;
 	}
+	
+	//Update customer details by ID
+	
+	public boolean updateCustomerById(int customer_id, Customer updatedCustomer)
+	{
+		boolean updateSuccessful = true;
+		try 
+		{
+			preparedStatement = con.prepareStatement("UPDATE newspaper_db_1.customers SET name = ?, address = ?, phone_no = ?, is_away = ? WHERE customer_id = ?");
+			
+			//Set the parameters for the prepared statement from the update customer data
+			
+			preparedStatement.setString(1, updatedCustomer.getName());
+			preparedStatement.setString(2, updatedCustomer.getAddress());
+			preparedStatement.setInt(3, updatedCustomer.getPhoneNo());
+			preparedStatement.setBoolean(4, updatedCustomer.getIsAway());
+			preparedStatement.setInt(5, customer_id);
+			
+			
+			//Execute update
+			
+			int rowsAffected = preparedStatement.executeUpdate();
+			if (rowsAffected == 0) 
+			{
+				updateSuccessful = false; // No rows updated, invalid ID
+				System.out.println("Customer not updated, possibly invalid id");
+			}
+		}
+		catch (Exception e) 
+		{
+			updateSuccessful = false;
+			e.printStackTrace();
+		}
+		
+		return updateSuccessful;
+	}
+	
+	
 	//Delete customers by the id
 	public boolean deleteCustomerById(int customer_id) 
 
@@ -105,11 +146,116 @@ public class Database
 		return deleteSuccessful;
 	}
 
-	// UPDATE MISSING!!
 	
+	// ORDER --------------------------------------------------------
 	
 	// Insert Order
-	public boolean insertOrderDetails(Order o) 
+	public boolean insertOrderDetails(Publication o) 
+	{
+		boolean insertSuccessful = true;
+		
+		try 
+		{
+			//Create prepared statement to issue SQL query to the database
+			preparedStatement = con.prepareStatement("insert into newspaper_db_1.publications values (default, ?, ?, ?, ?, ?)");
+			preparedStatement.setString(1, o.getPubName());
+			preparedStatement.setInt(2, o.getStock());
+			preparedStatement.setString(3, o.getPubType());
+			preparedStatement.setDouble(4, o.getPubPrice());
+			preparedStatement.setString(5, o.getFrequency());
+			preparedStatement.executeUpdate();
+		
+		}
+		catch (Exception e) 
+		{
+			insertSuccessful = false;
+			e.printStackTrace();
+		}
+		
+		return insertSuccessful;
+	}
+	// Read
+	public ResultSet getAllPublications() 
+	{
+		try 
+		{
+			statement = con.createStatement();
+			resultSet = statement.executeQuery("select * from publications");
+		}
+		catch (Exception e) 
+		{
+			resultSet = null;
+		}
+		return resultSet;
+	}
+	
+	//Update
+	public boolean updatePublicationById(int pub_id, Publication updatedPub)
+	{
+		boolean updateSuccessful = true;
+		try 
+		{
+			preparedStatement = con.prepareStatement("UPDATE newspaper_db_1.publications SET name = ?, in_stock = ?, type = ?, del_date = ?, price = ?, frequency = ? WHERE pub_id = ?");
+			
+			//Set the parameters for the prepared statement from the update order data
+			
+			preparedStatement.setString(1, updatedPub.getPubName());
+			preparedStatement.setInt(2, updatedPub.getStock());
+			preparedStatement.setString(3, updatedPub.getPubType());
+			preparedStatement.setDouble(4, updatedPub.getPubPrice());
+			preparedStatement.setString(5, updatedPub.getFrequency());
+			preparedStatement.executeUpdate();
+			
+			
+			//Execute update
+			
+			int rowsAffected = preparedStatement.executeUpdate();
+			if (rowsAffected == 0) 
+			{
+				updateSuccessful = false; // No rows updated, invalid ID
+				System.out.println("Order not updated, possibly invalid pub id");
+			}
+		}
+		catch (Exception e) 
+		{
+			updateSuccessful = false;
+			e.printStackTrace();
+		}
+		
+		return updateSuccessful;
+	}
+	
+	//Delete
+	public boolean deletePublicationById(int pub_id) 
+
+	{
+		boolean deleteSuccessful = true;
+		
+		try 
+		{
+			if (pub_id == -99) 
+			{
+				preparedStatement = con.prepareStatement("delete from newspaper_db_1.orders");
+			}
+			else 
+			{
+				preparedStatement = con.prepareStatement("delete from newspaper_db_1.orders where id = " + pub_id);
+				preparedStatement.executeUpdate();
+			}
+		}
+		catch (Exception e) 
+		{
+			deleteSuccessful = false;
+		}
+		
+		return deleteSuccessful;
+	}
+	
+	
+	//PUBLICATION --------------------------------------------------
+	
+	// Insert Order
+	public boolean insertPublicationDetails(Order o) 
 	{
 		boolean insertSuccessful = true;
 		
@@ -149,27 +295,40 @@ public class Database
 	}
 	
 	//Update
-	/*
-	 * public boolean editOrder(Order o) { boolean editSuccessful = true;
-	 * 
-	 * try { statement = con.createStatement(); resultSet =
-	 * statement.executeQuery("select order_id from orders where order_id = " +
-	 * o.getOrder_id()); rsmd = resultSet.getMetaData(); int columnNumber =
-	 * rsmd.getColumnCount(); resultSet.next(); System.out.println(columnNumber); if
-	 * (columnNumber >= 1) { String temp_id = resultSet.getString(columnNumber);
-	 * System.out.println(temp_id); } else { int temp_id =
-	 * resultSet.getInt(columnNumber); System.out.println(temp_id); }
-	 * 
-	 * }
-	 * 
-	 * catch (Exception e) {
-	 * 
-	 * System.out.println(""); editSuccessful = false; e.printStackTrace(); }
-	 * 
-	 * return editSuccessful;
-	 * 
-	 * }
-	 */
+	public boolean updateOrderById(int order_id, Order updatedOrder)
+	{
+		boolean updateSuccessful = true;
+		try 
+		{
+			preparedStatement = con.prepareStatement("UPDATE newspaper_db_1.customers SET customer_id = ?, pub_id = ?, quantity_pub = ?, del_date = ?, price = ? WHERE order_id = ?");
+			
+			//Set the parameters for the prepared statement from the update order data
+			
+			preparedStatement.setInt(1, updatedOrder.getCus_id());
+			preparedStatement.setInt(2, updatedOrder.getPub_id());
+			preparedStatement.setInt(3, updatedOrder.getQuantity_pub());
+			preparedStatement.setString(4, updatedOrder.getDel_date());
+			preparedStatement.setDouble(5, updatedOrder.getPrice());
+			preparedStatement.setInt(6, order_id);
+			
+			
+			//Execute update
+			
+			int rowsAffected = preparedStatement.executeUpdate();
+			if (rowsAffected == 0) 
+			{
+				updateSuccessful = false; // No rows updated, invalid ID
+				System.out.println("Order not updated, possibly invalid order id");
+			}
+		}
+		catch (Exception e) 
+		{
+			updateSuccessful = false;
+			e.printStackTrace();
+		}
+		
+		return updateSuccessful;
+	}
 	
 	//Delete
 	public boolean deleteOrderById(int order_id) 
@@ -196,12 +355,6 @@ public class Database
 		
 		return deleteSuccessful;
 	}
-	/*
-	 * public static void main(String[] args) throws Exception { Database db = new
-	 * Database(); Order o = new Order(1, 1.99, 1, "ya", 1);
-	 * System.out.println(db.editOrder(o));
-	 * 
-	 * }
-	 */
+	
 }
 
