@@ -2,7 +2,7 @@ package Docket;
 
 public class DeliveryDocket {
     private int dockId;
-    private int custId;
+    private long custId;
     private int ordNum;
     private String name;
     private String address;
@@ -37,7 +37,7 @@ public class DeliveryDocket {
     }
 
     int getcustId() {
-        return custId;
+        return (int) custId;
     }
 
     int getordNum() {
@@ -56,19 +56,19 @@ public class DeliveryDocket {
         return phoneNumber;
     }
 
-    public DeliveryDocket(int dockId, int custID, int ordNum, String custName, String custAddr, String custPhone)
+    public DeliveryDocket(int dockId, long l, int ordNum, String custName, String custAddr, String custPhone)
             throws DocketHandler {
 
         try {
             validateDeliveryDocketId(dockId);
-            validateCustomerID(custID);
+            validateCustomer(custId);
             validateOrderNumber(ordNum);
             validateName(custName);
             validateAddress(custAddr);
             validatePhoneNumber(custPhone);
 
             this.dockId = dockId;
-            this.custId = custID;
+            this.custId = l;
             this.ordNum = ordNum;
             this.name = custName;
             this.address = custAddr;
@@ -82,18 +82,34 @@ public class DeliveryDocket {
         if (ordNum <= 0) {
             throw new DocketHandler("Order number must be greater than 0.");
         }
+         
     }
 
-    private void validateCustomerID(int custId) throws DocketHandler {
-        if (custId <= 0) {
-            throw new DocketHandler("Customer ID must be greater than 0.");
-        }
-    }
+    public static void validateCustomer(long custId2) throws DocketHandler
+	{
+		int customerLength = String.valueOf(custId2).length();
+		// Verify that there is a customer's phone number and its 9 characters.
+		if(customerLength < 4) 
+		{
+			throw new DocketHandler("Customer ID cannot be less than 4 digits");
+		}
+		else if(customerLength > 10)
+		{
+			throw new DocketHandler("Customer ID cannot be more than 10 digits");
+		}
+
+	}
 
     private void validateDeliveryDocketId(int dockId) throws DocketHandler {
-        if (dockId <= 0) {
-            throw new DocketHandler("Delivery docket ID must be greater than 0.");
-        }
+    	int customerLength = String.valueOf(dockId).length();
+		if(customerLength < 0) 
+		{
+			throw new DocketHandler("Docket ID cannot be less than 4 digits");
+		}
+		else if(customerLength > 12)
+		{
+			throw new DocketHandler("Docket ID cannot be more than 10 digits");
+		}
     }
 
     public static void validateName(String custName) throws DocketHandler {
@@ -137,6 +153,11 @@ public class DeliveryDocket {
         	throw new DocketHandler("Phone number should be 9 digits");
         }
     }
+
+	public static void validatePhoneNumber(int i) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 // You need to define the DocketHandler class to make this functional
