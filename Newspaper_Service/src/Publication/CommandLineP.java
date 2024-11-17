@@ -3,9 +3,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
+import Database.Database;
+import Database.MenuHandler;
+
 public class CommandLineP {
 	
-	private static void listOfFunctions() {
+	public static void listOfFunctions() {
 		
 		System.out.println(" ");
 		System.out.println("=============================================");
@@ -58,76 +61,79 @@ public class CommandLineP {
 		
 		try {
 			
-			//MySQLAccess dao = new MySQLAccess();
-			//no MySQL class yet
-		
+			Database dao = new Database();
+
 			// Configure System for Running
-			Scanner keyboard = new Scanner(System.in); 
+			Scanner keyboard = new Scanner(System.in);
 			String functionNumber = "-99";
 			boolean keepAppOpen = true;
-		
+
 			while (keepAppOpen == true) {
-			
-				//Present list of functionality and get selection
+
+				// Present list of functionality and get selection
 				listOfFunctions();
 				functionNumber = keyboard.next();
 		
 				switch (functionNumber) {
 		
-//				case "1":
-//					//Get Customer Details from the User
-//					System.out.printf("Enter Customer Name: \n");
-//					String custName = keyboard.next();
-//					System.out.printf("Enter Customer Address: \n");
-//					String custAddr = keyboard.next();
-//					System.out.printf("Enter Customer PhoneNumber: \n");
-//					String custphoneNumber = keyboard.next();
-//				
-//					//Customer custObj = new Customer(name,address,phoneNo,isAway,subscriptions);
-//				
-//					//Insert Customer Details into the database
-//					boolean insertResult = dao.insertCustomerDetailsAccount(custObj);
-//					if (insertResult == true)
-//						System.out.println("Customer Details Saved");
-//					else 
-//						System.out.println("ERROR: Customer Details NOT Saved");
-//					break;
-//					
-//				case "2": 
-//					//Retrieve ALL Customer Records
-//					ResultSet rSet = dao.retrieveAllCustomerAccounts();
-//					if (rSet == null) {
-//						System.out.println("No Records Found");
-//						break;
-//					}
-//					else {
-//						boolean tablePrinted = printCustomerTable(rSet);
-//						if (tablePrinted == true)
-//							rSet.close();
-//					}
-//					break;
-//					
-//				case "3":
-//					//Delete Customer Record by ID
-//					System.out.println("Enter Customer Id to be deleted or -99 to Clear all Rows");
-//					String deleteCustId = keyboard.next();
-//					boolean deleteResult = dao.deleteCustomerById(Integer.parseInt(deleteCustId));
-//					if ((deleteResult == true) && (deleteCustId.equals("-99")))
-//						System.out.println("Customer Table Emptied");
-//					else if (deleteResult == true)
-//						System.out.println("Customer Deleted");
-//					else 
-//						System.out.println("ERROR: Customer Details NOT Deleted or Do Not Exist");
-//					break;
-//			
-//				case "99":
-//					keepAppOpen = false;
-//					System.out.println("Closing the Application");
-//					break;
-//			
-//				default:
-//					System.out.println("No Valid Function Selected");
-//					break;
+				case "1":
+					//Get Publication Details from the User
+					System.out.printf("Enter Publication Name: \n");
+					String pubName = keyboard.next();
+					System.out.printf("Enter Stock Amount: \n");
+					int stock = keyboard.nextInt();
+					System.out.printf("Enter Publication Type: \n");
+					String pubType = keyboard.next();
+					System.out.printf("Enter Publication Price: \n");
+					double pubPrice = keyboard.nextDouble();
+					System.out.printf("Enter Publication frequency: \n");
+					String frequency = keyboard.next();
+				
+					Publication pubObj = new Publication(pubName,pubType,frequency,pubPrice,stock);
+				
+					//Insert publication Details into the database
+					boolean insertResult = dao.insertOrderDetails(pubObj);
+					if (insertResult == true)
+						System.out.println("Publication Details Saved");
+					else 
+						System.out.println("ERROR: Publication Details NOT Saved");
+					break;
+					
+				case "2": 
+					//Retrieve ALL publication Records
+					ResultSet rSet = dao.getAllPublications();
+					if (rSet == null) {
+						System.out.println("No Records Found");
+						break;
+					}
+					else {
+						boolean tablePrinted = printPublicationTable(rSet);
+						if (tablePrinted == true)
+							rSet.close();
+					}
+					break;
+					
+				case "3":
+					//Delete Publication Record by ID
+					System.out.println("Enter Publication Id to be deleted or -99 to Clear all Rows");
+					String deletePubId = keyboard.next();
+					boolean deleteResult = dao.deletePublicationById(Integer.parseInt(deletePubId));
+					if ((deleteResult == true) && (deletePubId.equals("-99")))
+						System.out.println("Publication Table Emptied");
+					else if (deleteResult == true)
+						System.out.println("Publication Deleted");
+					else 
+						System.out.println("ERROR: Publication Details NOT Deleted or Do Not Exist");
+					break;
+			
+				case "99":
+					keepAppOpen = false;
+					System.out.println("Closing the Application");
+					break;
+			
+				default:
+					System.out.println("No Valid Function Selected");
+					break;
 			} // end switch
 		
 			}// end while

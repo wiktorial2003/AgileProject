@@ -3,6 +3,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
+import Database.Database;
+import Database.MenuHandler;
+
 public class CommandLineO {
 	
 	private static void listOfFunctions() {
@@ -12,7 +15,8 @@ public class CommandLineO {
 		System.out.println("Please choose ONE of the following options:");
 		System.out.println("1. Create an Order");
 		System.out.println("2. View ALL Order Records");
-		System.out.println("3. Delete an Order by ID");
+		System.out.println("3. Update Order Records");
+		System.out.println("4. Delete an Order by ID");
 		System.out.println("99. Close the Application");
 		System.out.println("=============================================");
 		System.out.println(" ");
@@ -58,8 +62,7 @@ public class CommandLineO {
 		
 		try {
 			
-			//MySQLAccess dao = new MySQLAccess();
-			//no MySQL class yet
+			Database dao = new Database();
 		
 			// Configure System for Running
 			Scanner keyboard = new Scanner(System.in); 
@@ -69,33 +72,34 @@ public class CommandLineO {
 			while (keepAppOpen == true) {
 			
 				//Present list of functionality and get selection
+				MenuHandler.displayWelcomeMenu();
 				listOfFunctions();
 				functionNumber = keyboard.next();
 		
 				switch (functionNumber) {
 		
-				case "1":
-					//Get Customer Details from the User
-					System.out.printf("Enter Customer Name: \n");
-					String custName = keyboard.next();
-					System.out.printf("Enter Customer Address: \n");
-					String custAddr = keyboard.next();
-					System.out.printf("Enter Customer PhoneNumber: \n");
-					String custphoneNumber = keyboard.next();
-				
-					//Order orderObj = new Order(name,address,phoneNo,isAway,subscriptions);
-				
+//				case "1":
+//					//Get Order Details from the User
+//					System.out.printf("Enter Order: \n");
+//					double orderPrice = keyboard.nextDouble();
+//					System.out.printf("Enter Customer Address: \n");
+//					String custAddr = keyboard.next();
+//					System.out.printf("Enter Customer PhoneNumber: \n");
+//					String custphoneNumber = keyboard.next();
+//				
+//					Order orderObj = new Order(orderPrice,address,phoneNo,isAway,subscriptions);
+//				
 //					//Insert Customer Details into the database
 //					boolean insertResult = dao.insertOrderDetailsAccount(orderObj);
 //					if (insertResult == true)
-//						System.out.println("Customer Details Saved");
+//					System.out.println("Customer Details Saved");
 //					else 
 //						System.out.println("ERROR: Customer Details NOT Saved");
 //					break;
-					
+//					
 //				case "2": 
 //					//Retrieve ALL Customer Records
-//					ResultSet rSet = dao.retrieveAllCustomerAccounts();
+//					ResultSet rSet = dao.getAllOrders();
 //					if (rSet == null) {
 //						System.out.println("No Records Found");
 //						break;
@@ -108,10 +112,10 @@ public class CommandLineO {
 //					break;
 //					
 //				case "3":
-//					//Delete Customer Record by ID
+//				//Delete Customer Record by ID
 //					System.out.println("Enter Customer Id to be deleted or -99 to Clear all Rows");
 //					String deleteCustId = keyboard.next();
-//					boolean deleteResult = dao.deleteCustomerById(Integer.parseInt(deleteCustId));
+//				boolean deleteResult = dao.deleteCustomerById(Integer.parseInt(deleteCustId));
 //					if ((deleteResult == true) && (deleteCustId.equals("-99")))
 //						System.out.println("Customer Table Emptied");
 //					else if (deleteResult == true)

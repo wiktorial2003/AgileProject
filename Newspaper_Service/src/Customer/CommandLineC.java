@@ -15,6 +15,7 @@ public class CommandLineC {
 		System.out.println("Please choose ONE of the following options:");
 		System.out.println("1. Create Customer Account");
 		System.out.println("2. View ALL Customer Records");
+		System.out.println("3. Update Customer Records");
 		System.out.println("3. Delete Customer Record by ID");
 		System.out.println("99. Close the Application");
 		System.out.println("=============================================");
@@ -110,8 +111,43 @@ public class CommandLineC {
 							rSet.close();
 					}
 					break;
-
+					
 				case "3":
+					//Update Customer Records
+					
+					 
+					System.out.println("Enter the Customer ID to update: ");
+				    int updateCustomerId = keyboard.nextInt();
+
+				    System.out.println("Enter New Customer Name: ");
+				    String newCustName = keyboard.next();
+
+				    System.out.println("Enter New Customer Address: ");
+				    String newCustAddr = keyboard.next();
+
+				    System.out.println("Enter New Customer Phone Number: ");
+				    String newCustPhone = keyboard.next();
+				    
+				    //Customer custObj1 = new Customer(custName, custAddr, custPhoneNo, false);
+				    
+//				    insertResult = dao.insertCustomerDetailsAccount(custObj1);
+//					if (insertResult == true)
+//						System.out.println("Customer Details Saved");
+//					else
+//						System.out.println("ERROR: Customer Details NOT Saved");
+
+				    // Call the update method
+				    //change these values
+				    //boolean updateResult = dao.updateCustomerById(updateCustomerId, custObj1);
+//				    if (updateResult) {
+//				        System.out.println("Customer Record Updated Successfully");
+//				    } else {
+//				        System.out.println("ERROR: Customer Record NOT Updated");
+//				    }
+				    break;
+					
+
+				case "4":
 					// Delete Customer Record by ID
 					System.out.println("Enter Customer Id to be deleted or -99 to Clear all Rows");
 					String deleteCustId = keyboard.next();
