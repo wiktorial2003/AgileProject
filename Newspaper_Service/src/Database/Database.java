@@ -50,7 +50,6 @@ public class Database
 		
 		try 
 		{
-			System.out.println(c.getName() + " " + c.getAddress());
 			//Create prepared statement to issue SQL query to the database
 			preparedStatement = con.prepareStatement("insert into newspaper_db_1.customers values (default, ?, ?, ?, ?)");
 			preparedStatement.setString(1, c.getName());

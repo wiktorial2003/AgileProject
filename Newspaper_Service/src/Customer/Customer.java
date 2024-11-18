@@ -3,7 +3,7 @@ package Customer;
 import java.time.*;
 public class Customer {
 
-	private int customer_id; // should this be in the object or?
+	private int customer_id; 
 	private String name;
 	private String address;
 	private int phoneNo;
@@ -18,7 +18,7 @@ public class Customer {
 
 
 	//In C.R.U.D, the create refers to the constructor
-	Customer(String name, String address, int phoneNo, boolean isAway) throws CustomerHandler 
+	public Customer(String name, String address, int phoneNo, boolean isAway) throws CustomerHandler 
 	{
 		customer_id = 0;
 		try 
