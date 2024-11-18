@@ -85,7 +85,7 @@ public class Database
 	
 	//Update customer details by ID
 	
-	public boolean updateCustomerById(int customer_id, Customer updatedCustomer)
+	public boolean updateCustomerById(int customer_id, Customer updatedCustomer) //object to pass during update 
 	{
 		boolean updateSuccessful = true;
 		try 

@@ -118,6 +118,11 @@ public class CommandLineC {
 					 
 					System.out.println("Enter the Customer ID to update: ");
 				    int updateCustomerId = keyboard.nextInt();
+				    try {
+				    	// check if there is an entry in the database through id
+				    }catch(Exception e){
+				    	// no id on database, no customer, update fails
+				    }
 
 				    System.out.println("Enter New Customer Name: ");
 				    String newCustName = keyboard.next();
@@ -126,24 +131,15 @@ public class CommandLineC {
 				    String newCustAddr = keyboard.next();
 
 				    System.out.println("Enter New Customer Phone Number: ");
-				    String newCustPhone = keyboard.next();
+				    int newCustPhone = keyboard.nextInt();
 				    
-				    //Customer custObj1 = new Customer(custName, custAddr, custPhoneNo, false);
+				    Customer custObj1 = new Customer(newCustName, newCustAddr, newCustPhone, false);
 				    
-//				    insertResult = dao.insertCustomerDetailsAccount(custObj1);
-//					if (insertResult == true)
-//						System.out.println("Customer Details Saved");
-//					else
-//						System.out.println("ERROR: Customer Details NOT Saved");
-
-				    // Call the update method
-				    //change these values
-				    //boolean updateResult = dao.updateCustomerById(updateCustomerId, custObj1);
-//				    if (updateResult) {
-//				        System.out.println("Customer Record Updated Successfully");
-//				    } else {
-//				        System.out.println("ERROR: Customer Record NOT Updated");
-//				    }
+				    insertResult = dao.updateCustomerById(updateCustomerId, custObj1);
+					if (insertResult == true)
+						System.out.println("Customer Details updated successfuly");
+					else
+						System.out.println("ERROR: Customer Details were not updated.");
 				    break;
 					
 

@@ -12,9 +12,9 @@ public class Customer {
 	
 	
 
-	private LocalDate isAwayStartDate; // Getters, Setters, JUnits and Test Design not written for this
-	private LocalDate isAwayEndDate; // Getters, Setters, JUnits and Test Design not written for this
-	private String subscriptions;
+//	private LocalDate isAwayStartDate; // Getters, Setters, JUnits and Test Design not written for this
+//	private LocalDate isAwayEndDate; // Getters, Setters, JUnits and Test Design not written for this
+//	private String subscriptions;
 
 
 	//In C.R.U.D, the create refers to the constructor
