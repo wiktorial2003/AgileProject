@@ -6,6 +6,7 @@ import Publication.CommandLineP;
 import Customer.CommandLineC;
 // Import other entity classes as needed
 import Database.MenuHandler;
+import Order.CommandLineO;
 
 public class MainCaller {
 
@@ -22,32 +23,32 @@ public class MainCaller {
             switch (choice) {
                 case "1":
                     System.out.println("Opening Customer Management...");
-                    CommandLineC.main(new String[0]); // Replace with customer management logic
+                    CommandLineC.main(new String[0]); 
                     break;
 
                 case "2":
                     System.out.println("Opening Delivery Route Management...");
-                    // Call delivery route management logic here
+                   
                     break;
 
                 case "3":
                     System.out.println("Opening Docket Management...");
-                    // Call docket management logic here
+                    
                     break;
 
                 case "4":
                     System.out.println("Opening Invoice Management...");
-                    // Call invoice management logic here
+                  
                     break;
 
                 case "5":
                     System.out.println("Opening Order Management...");
-                    // Call order management logic here
+                    CommandLineO.main(new String[0]);
                     break;
 
                 case "6":
                     System.out.println("Opening Publication Management...");
-                    CommandLineC.main(new String[0]); // Replace with publication management logic
+                    CommandLineP.main(new String[0]); 
                     break;
 
                 case "99":

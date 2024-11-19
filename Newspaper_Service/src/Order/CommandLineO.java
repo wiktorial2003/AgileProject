@@ -72,7 +72,7 @@ public class CommandLineO {
 			while (keepAppOpen == true) {
 			
 				//Present list of functionality and get selection
-				MenuHandler.displayWelcomeMenu();
+				
 				listOfFunctions();
 				functionNumber = keyboard.next();
 		
