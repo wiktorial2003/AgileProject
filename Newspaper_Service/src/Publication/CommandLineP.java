@@ -1,4 +1,4 @@
-package Publication;
+ package Publication;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Scanner;
