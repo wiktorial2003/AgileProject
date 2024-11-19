@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
+
 import Database.Database;
 import Database.MenuHandler;
 
@@ -34,16 +35,16 @@ public class CommandLineO {
 		}
 		System.out.println();
 		while (rs.next()) {
-			int id = rs.getInt("id");
+			int id = rs.getInt("order_id");
 			double price = rs.getDouble("price");
-			int quantity = rs.getInt("quantity");
-			String delDate = rs.getString("delDate");
-			String publication = rs.getString("pubs");
+			int quantity = rs.getInt("quantity_pub");
+			String delDate = rs.getString("del_date");
+			int publication = rs.getInt("pub_id");
 			System.out.printf("%30s", id);
 			System.out.printf("%30s", price);
 			System.out.printf("%30s", quantity);
 			System.out.printf("%30s", delDate);
-			System.out.printf("%30s", publication);
+			//System.out.printf("%30s", pubID);
 			System.out.println();
 			
 			// these vars refer to the column names in the Customer database table, will be 
@@ -78,60 +79,101 @@ public class CommandLineO {
 		
 				switch (functionNumber) {
 		
-//				case "1":
+				case "1":
 //					//Get Order Details from the User
-//					System.out.printf("Enter Order: \n");
-//					double orderPrice = keyboard.nextDouble();
-//					System.out.printf("Enter Customer Address: \n");
-//					String custAddr = keyboard.next();
-//					System.out.printf("Enter Customer PhoneNumber: \n");
-//					String custphoneNumber = keyboard.next();
-//				
-//					Order orderObj = new Order(orderPrice,address,phoneNo,isAway,subscriptions);
-//				
+					//get customer to link
+					System.out.printf("Enter CustomerID: \n");
+					int customerID = keyboard.nextInt();
+					System.out.printf("Enter Publication ID: \n");
+					int pubID = keyboard.nextInt();
+					System.out.printf("Enter Quantity: \n");
+					int quantity = keyboard.nextInt();
+					System.out.printf("Enter price: \n");
+					double price = keyboard.nextDouble();
+					System.out.printf("Enter Delivery Date: \n");
+					String delDate = keyboard.next();
+				
+					Order orderObj = new Order(customerID,price,quantity,delDate,pubID);
+				
 //					//Insert Customer Details into the database
-//					boolean insertResult = dao.insertOrderDetailsAccount(orderObj);
-//					if (insertResult == true)
-//					System.out.println("Customer Details Saved");
-//					else 
-//						System.out.println("ERROR: Customer Details NOT Saved");
-//					break;
-//					
-//				case "2": 
+					boolean insertResult = dao.insertOrderDetails(orderObj);
+					if (insertResult == true)
+					System.out.println("Order Details Saved");
+					else 
+						System.out.println("ERROR: Order Details NOT Saved");
+					break;
+					
+				case "2": 
 //					//Retrieve ALL Customer Records
-//					ResultSet rSet = dao.getAllOrders();
-//					if (rSet == null) {
-//						System.out.println("No Records Found");
-//						break;
-//					}
-//					else {
-//						boolean tablePrinted = printOrderTable(rSet);
-//						if (tablePrinted == true)
-//							rSet.close();
-//					}
-//					break;
-//					
-//				case "3":
+					ResultSet rSet = dao.getAllOrders();
+					if (rSet == null) {
+						System.out.println("No Records Found");
+						break;
+					}
+					else {
+						boolean tablePrinted = printOrderTable(rSet);
+						if (tablePrinted == true)
+							rSet.close();
+					}
+					break;
+					
+				case "3":
+					//Update Customer Records
+					
+					 
+					System.out.println("Enter the Order ID to update: ");
+				    int updateOrderId = keyboard.nextInt();
+				    try {
+				    	// check if there is an entry in the database through id
+				    }catch(Exception e){
+				    	// no id on database, no customer, update fails
+				    }
+
+				    System.out.println("Enter New Customer ID: ");
+				    int newCustID = keyboard.nextInt();
+
+				    System.out.println("Enter New Publication ID: ");
+				    int newPubID = keyboard.nextInt();
+
+				    System.out.println("Enter New Quantitity: ");
+				    int newQuantity = keyboard.nextInt();
+				    
+				    System.out.println("Enter New Price: ");
+				    double newPrice = keyboard.nextDouble();
+				    
+				    System.out.println("Enter New Delivery Date: ");
+				    String newDelDate = keyboard.next();
+				    
+				    Order orderObj1 = new Order(newCustID,newPrice,newQuantity,newDelDate,newPubID);
+				    
+				    insertResult = dao.updateOrderById(updateOrderId, orderObj1);
+					if (insertResult == true)
+						System.out.println("Order Details updated successfuly");
+					else
+						System.out.println("ERROR: Order Details were not updated.");
+				    break;
+					
+				case "4":
 //				//Delete Customer Record by ID
-//					System.out.println("Enter Customer Id to be deleted or -99 to Clear all Rows");
-//					String deleteCustId = keyboard.next();
-//				boolean deleteResult = dao.deleteCustomerById(Integer.parseInt(deleteCustId));
-//					if ((deleteResult == true) && (deleteCustId.equals("-99")))
-//						System.out.println("Customer Table Emptied");
-//					else if (deleteResult == true)
-//						System.out.println("Customer Deleted");
-//					else 
-//						System.out.println("ERROR: Customer Details NOT Deleted or Do Not Exist");
-//					break;
-//			
-//				case "99":
-//					keepAppOpen = false;
-//					System.out.println("Closing the Application");
-//					break;
-//			
-//				default:
-//					System.out.println("No Valid Function Selected");
-//					break;
+					System.out.println("Enter Order Id to be deleted or -99 to Clear all Rows");
+					String deleteOrdId = keyboard.next();
+				boolean deleteResult = dao.deleteOrderById(Integer.parseInt(deleteOrdId));
+					if ((deleteResult == true) && (deleteOrdId.equals("-99")))
+						System.out.println("Order Table Emptied");
+					else if (deleteResult == true)
+						System.out.println("Order Deleted");
+					else 
+						System.out.println("ERROR: Order Details NOT Deleted or Do Not Exist");
+					break;
+			
+				case "99":
+					keepAppOpen = false;
+					System.out.println("Closing the Application");
+					break;
+			
+				default:
+					System.out.println("No Valid Function Selected");
+					break;
 				} // end switch
 		
 			}// end while

@@ -254,7 +254,7 @@ public class Database
 	//PUBLICATION --------------------------------------------------
 	
 	// Insert Order
-	public boolean insertPublicationDetails(Order o) 
+	public boolean insertOrderDetails(Order o) 
 	{
 		boolean insertSuccessful = true;
 		
