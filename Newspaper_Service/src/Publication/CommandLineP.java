@@ -92,7 +92,7 @@ public class CommandLineP {
 					Publication pubObj = new Publication(pubName,pubType,frequency,pubPrice,stock);
 				
 					//Insert publication Details into the database
-					boolean insertResult = dao.insertOrderDetails(pubObj);
+					boolean insertResult = dao.insertPublicationDetails(pubObj);
 					if (insertResult == true)
 						System.out.println("Publication Details Saved");
 					else 

@@ -89,7 +89,7 @@ public class Database
 		boolean updateSuccessful = true;
 		try 
 		{
-			preparedStatement = con.prepareStatement("UPDATE newspaper_db_1.customers SET name = ?, address = ?, phone_no = ?, is_away = ? WHERE customer_id = ?");
+			preparedStatement = con.prepareStatement("UPDATE newspaper_db_1.customers SET name = ?, address = ?, phoneNo = ?, isAway = ? WHERE customer_id = ?");
 			
 			//Set the parameters for the prepared statement from the update customer data
 			
@@ -127,19 +127,27 @@ public class Database
 		
 		try 
 		{
+			int rowsAffected = 0;
 			if (customer_id == -99) 
 			{
-				preparedStatement = con.prepareStatement("delete from newspaper_db_1.customers");
+				preparedStatement = con.prepareStatement("DELETE FROM newspaper_db_1.customers");
+				preparedStatement.executeUpdate();
 			}
 			else 
 			{
-				preparedStatement = con.prepareStatement("delete from newspaper_db_1.customer where id = " + customer_id);
-				preparedStatement.executeUpdate();
+				preparedStatement = con.prepareStatement("DELETE FROM newspaper_db_1.customers WHERE customer_id = ?");
+				preparedStatement.setInt(1, customer_id);
+			 rowsAffected = preparedStatement.executeUpdate(); // Execute the update here
 			}
+		    
+	        if (rowsAffected == 0) {
+	            deleteSuccessful = false; // No rows deleted, possibly invalid customer_id
+	        }
 		}
 		catch (Exception e) 
 		{
 			deleteSuccessful = false;
+			e.printStackTrace();
 		}
 		
 		return deleteSuccessful;
@@ -149,7 +157,7 @@ public class Database
 	// ORDER --------------------------------------------------------
 	
 	// Insert Order
-	public boolean insertOrderDetails(Publication o) 
+	public boolean insertPublicationDetails(Publication o) 
 	{
 		boolean insertSuccessful = true;
 		
