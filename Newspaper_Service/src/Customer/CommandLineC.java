@@ -113,17 +113,10 @@ public class CommandLineC {
 					break;
 					
 				case "3":
-					//Update Customer Records
-					
-					 
-					System.out.println("Enter the Customer ID to update: ");
+				    System.out.println("Enter the Customer ID to update: ");
 				    int updateCustomerId = keyboard.nextInt();
-				    try {
-				    	// check if there is an entry in the database through id
-				    }catch(Exception e){
-				    	// no id on database, no customer, update fails
-				    }
 
+				    // Collect new customer data
 				    System.out.println("Enter New Customer Name: ");
 				    String newCustName = keyboard.next();
 
@@ -132,15 +125,19 @@ public class CommandLineC {
 
 				    System.out.println("Enter New Customer Phone Number: ");
 				    int newCustPhone = keyboard.nextInt();
-				    
-				    Customer custObj1 = new Customer(newCustName, newCustAddr, newCustPhone, false);
-				    
-				    insertResult = dao.updateCustomerById(updateCustomerId, custObj1);
-					if (insertResult == true)
-						System.out.println("Customer Details updated successfuly");
-					else
-						System.out.println("ERROR: Customer Details were not updated.");
+
+				    // Create a new customer object with updated details
+				    Customer updatedCustomer = new Customer(newCustName, newCustAddr, newCustPhone, false);
+
+				    // Perform the update operation
+				    boolean updateResult = dao.updateCustomerById(updateCustomerId, updatedCustomer);
+				    if (updateResult) {
+				        System.out.println("Customer Details updated successfully");
+				    } else {
+				        System.out.println("ERROR: Customer Details were not updated.");
+				    }
 				    break;
+
 					
 
 				case "4":

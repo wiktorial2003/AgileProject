@@ -1,21 +1,24 @@
  package Publication;
+ 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Scanner;
 
+import Customer.Customer;
 import Database.Database;
 import Database.MenuHandler;
 
 public class CommandLineP {
 	
-	public static void listOfFunctions() {
+	private static void listOfFunctions() {
 		
 		System.out.println(" ");
 		System.out.println("=============================================");
 		System.out.println("Please choose ONE of the following options:");
 		System.out.println("1. Create a Publication");
 		System.out.println("2. View ALL Publications");
-		System.out.println("3. Delete Publication by ID");
+		System.out.println("3. Update Publications");
+		System.out.println("4. Delete Publication by ID");
 		System.out.println("99. Close the Application");
 		System.out.println("=============================================");
 		System.out.println(" ");
@@ -113,7 +116,39 @@ public class CommandLineP {
 					}
 					break;
 					
-				case "3":
+				case "3": 
+					System.out.println("Enter the Customer ID to update: ");
+				    int updatePublicationId = keyboard.nextInt();
+
+				    // Collect new customer data
+				    System.out.println("Enter New Customer Name: ");
+				    String newPubName = keyboard.next();
+
+				    System.out.println("Enter New Customer Address: ");
+				    String newPubType = keyboard.next();
+
+				    System.out.println("Enter New Customer Phone Number: ");
+				    String newPubDate = keyboard.next();
+				    
+				    System.out.printf("Enter Publication Price: \n");
+					double newPubPrice = keyboard.nextDouble();
+					
+					System.out.printf("Enter Publication frequency: \n");
+					int newFrequency = keyboard.nextInt();
+
+				    // Create a new customer object with updated details
+				    Publication updatedPublication = new Publication(newPubName, newPubType, newPubDate, newPubPrice, newFrequency);
+
+				    // Perform the update operation
+				    boolean updateResult = dao.updatePublicationById(updatePublicationId, updatedPublication);
+				    if (updateResult) {
+				        System.out.println("Publication Details updated successfully");
+				    } else {
+				        System.out.println("ERROR: Publication Details were not updated.");
+				    }
+				    break;
+
+				case "4":
 					//Delete Publication Record by ID
 					System.out.println("Enter Publication Id to be deleted or -99 to Clear all Rows");
 					String deletePubId = keyboard.next();

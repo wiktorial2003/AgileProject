@@ -118,18 +118,12 @@ public class CommandLineO {
 					break;
 					
 				case "3":
-					//Update Customer Records
+					//Update Order Records
 					
-					 
 					System.out.println("Enter the Order ID to update: ");
-				    int updateOrderId = keyboard.nextInt();
-				    try {
-				    	// check if there is an entry in the database through id
-				    }catch(Exception e){
-				    	// no id on database, no customer, update fails
-				    }
-
-				    System.out.println("Enter New Customer ID: ");
+				    int newOrderID = keyboard.nextInt();
+				    
+				    System.out.println("Enter Customer ID: ");
 				    int newCustID = keyboard.nextInt();
 
 				    System.out.println("Enter New Publication ID: ");
@@ -144,13 +138,15 @@ public class CommandLineO {
 				    System.out.println("Enter New Delivery Date: ");
 				    String newDelDate = keyboard.next();
 				    
-				    Order orderObj1 = new Order(newCustID,newPrice,newQuantity,newDelDate,newPubID);
+				    Order updatedOrder = new Order(newCustID,newPrice,newQuantity,newDelDate,newPubID);
 				    
-				    insertResult = dao.updateOrderById(updateOrderId, orderObj1);
-					if (insertResult == true)
-						System.out.println("Order Details updated successfuly");
-					else
-						System.out.println("ERROR: Order Details were not updated.");
+
+					boolean updateResult = dao.updateOrderById(newOrderID, updatedOrder);
+				    if (updateResult) {
+				        System.out.println("Order Details updated successfully");
+				    } else {
+				        System.out.println("ERROR: Order Details were not updated.");
+				    }
 				    break;
 					
 				case "4":
