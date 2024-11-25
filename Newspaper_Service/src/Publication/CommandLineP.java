@@ -100,7 +100,7 @@ public class CommandLineP {
 				    String frequency = keyboard.next();
 
 				    // Create Publication object
-				    Publication pubObj = new Publication(pubName, pubType, frequency, pubPrice, stock);
+				    Publication pubObj = new Publication(pubName, stock,  pubType, pubPrice, frequency);
 
 				    // Insert publication details into the database
 				    boolean insertResult = dao.insertPublicationDetails(pubObj);
@@ -133,20 +133,20 @@ public class CommandLineP {
 				    System.out.println("Enter New Customer Name: ");
 				    String newPubName = keyboard.next();
 
+				    System.out.printf("Enter Stock Amount: \n");
+				    int newStock = keyboard.nextInt();
+				    
 				    System.out.println("Enter New Customer Address: ");
 				    String newPubType = keyboard.next();
-
-				    System.out.println("Enter New Customer Phone Number: ");
-				    String newPubDate = keyboard.next();
 				    
 				    System.out.printf("Enter Publication Price: \n");
 					double newPubPrice = keyboard.nextDouble();
 					
 					System.out.printf("Enter Publication frequency: \n");
-					int newFrequency = keyboard.nextInt();
+					String newFrequency = keyboard.next();
 
 				    // Create a new customer object with updated details
-				    Publication updatedPublication = new Publication(newPubName, newPubType, newPubDate, newPubPrice, newFrequency);
+				    Publication updatedPublication = new Publication(newPubName, newStock, newPubType,  newPubPrice, newFrequency);
 
 				    // Perform the update operation
 				    boolean updateResult = dao.updatePublicationById(updatePublicationId, updatedPublication);

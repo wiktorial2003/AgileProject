@@ -17,10 +17,10 @@ public class PublicationTester extends TestCase {
 	 */
 	public void testPublication001() throws PublicationHandler {
 		try {
-			Publication pubObj = new Publication("Irish Times", "Newspaper", "Daily", 4.50, 20);
+			Publication pubObj = new Publication("Irish Times",  20, "Newspaper",  4.50, "daily");
 			assertEquals("Irish Times", pubObj.getPubName());
 			assertEquals("Newspaper", pubObj.getPubType());
-			assertEquals("Daily", pubObj.getFrequency());
+			assertEquals("daily", pubObj.getFrequency());
 			assertEquals(4.50, pubObj.getPubPrice());
 			assertEquals(20, pubObj.getStock());
 		
@@ -103,7 +103,7 @@ public class PublicationTester extends TestCase {
 		
 		} catch (PublicationHandler e) {
 			
-			assertEquals("Publication name cannot be empty!", e.getMessage());
+			assertEquals("Publication type cannot be empty!", e.getMessage());
 		
 		}
 	}
@@ -277,7 +277,7 @@ public class PublicationTester extends TestCase {
 	 * 
 	 * Test #: 13 Test Objective: Catch invalid stock
 	 * 
-	 * Inputs: price = 1000
+	 * Inputs: price = 1001
 	 * 
 	 * Expected Output:Exception Message -> "Stock must be less than 1000"
 	 * 
@@ -291,7 +291,7 @@ public class PublicationTester extends TestCase {
 
 			// Call method under test
 
-			Publication.validateStock(1000);
+			Publication.validateStock(1001);
 
 			fail("Exception not expected");
 

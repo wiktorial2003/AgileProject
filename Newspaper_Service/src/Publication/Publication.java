@@ -11,15 +11,17 @@ public class Publication {
 	private int pub_id;
 	
 	
-	public Publication(String pubName, String pubType, String frequency, double pubPrice, int stock)throws PublicationHandler 
+	public Publication(String pubName, int stock, String pubType, double pubPrice, String frequency)throws PublicationHandler 
 	{
 		pub_id = 0;
 		try {
 			validateName(pubName);
-			validatePubType(pubType);
-			validateFrequency(frequency);
-			validatePubPrice(pubPrice);
 			validateStock(stock);
+			validatePubType(pubType);
+			validatePubPrice(pubPrice);
+			validateFrequency(frequency);
+			
+			
 			
 		}
 		catch(PublicationHandler e)
@@ -28,10 +30,10 @@ public class Publication {
 		}
 		
 		this.pubName = pubName;
-		this.pubType = pubType;
-		this.frequency = frequency;
-		this.pubPrice = pubPrice;
 		this.stock = stock;
+		this.pubType = pubType;
+		this.pubPrice = pubPrice;
+		this.frequency = frequency;
 		 
 	}
 	
@@ -128,7 +130,7 @@ public class Publication {
 		{
 			throw new PublicationHandler("Publication frequency cannot be empty!");
 		}
-		else if(frequency != "daily"|| frequency != "weekly" || frequency != "monthly") 
+		else if(!frequency.equals("daily") && !frequency.equals("weekly") && !frequency.equals("monthly")) 
 		{
 			throw new PublicationHandler("Publication frequency must be daily, weekly or monthly.");
 		}
