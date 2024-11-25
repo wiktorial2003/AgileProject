@@ -41,11 +41,13 @@ public class CommandLineP {
 			String type = rs.getString("pubType");
 			String date = rs.getString("date");
 			double price = rs.getDouble("price"); // is this correct??
+			String frequency = rs.getString("frequency");
 			System.out.printf("%30s", id);
 			System.out.printf("%30s", name);
 			System.out.printf("%30s", type);
 			System.out.printf("%30s", date);
 			System.out.printf("%30s", price); //correct??
+			System.out.printf("%30s", frequency);
 			System.out.println();
 			
 			// these vars refer to the column names in the Customer database table, will be 
@@ -80,28 +82,35 @@ public class CommandLineP {
 				switch (functionNumber) {
 		
 				case "1":
-					//Get Publication Details from the User
+				    // Get Publication Details from the User
+				    
 					System.out.printf("Enter Publication Name: \n");
-					String pubName = keyboard.next();
-					System.out.printf("Enter Stock Amount: \n");
-					int stock = keyboard.nextInt();
-					System.out.printf("Enter Publication Type: \n");
-					String pubType = keyboard.next();
-					System.out.printf("Enter Publication Price: \n");
-					double pubPrice = keyboard.nextDouble();
-					System.out.printf("Enter Publication frequency: \n");
-					String frequency = keyboard.next();
-				
-					Publication pubObj = new Publication(pubName,pubType,frequency,pubPrice,stock);
-				
-					//Insert publication Details into the database
-					boolean insertResult = dao.insertPublicationDetails(pubObj);
-					if (insertResult == true)
-						System.out.println("Publication Details Saved");
-					else 
-						System.out.println("ERROR: Publication Details NOT Saved");
-					break;
-					
+				    String pubName = keyboard.next();
+				    
+				    System.out.printf("Enter Stock Amount: \n");
+				    int stock = keyboard.nextInt();
+				    
+				    System.out.printf("Enter Publication Type: \n");
+				    String pubType = keyboard.next();
+				   
+				    System.out.printf("Enter Publication Price: \n");
+				    double pubPrice = keyboard.nextDouble();
+				    
+				    System.out.printf("Enter Publication frequency (daily, weekly, monthly): \n");
+				    String frequency = keyboard.next();
+
+				    // Create Publication object
+				    Publication pubObj = new Publication(pubName, pubType, frequency, pubPrice, stock);
+
+				    // Insert publication details into the database
+				    boolean insertResult = dao.insertPublicationDetails(pubObj);
+				    if (insertResult) {
+				        System.out.println("Publication Details Saved");
+				    } else {
+				        System.out.println("ERROR: Publication Details NOT Saved");
+				    }
+				    break;
+
 				case "2": 
 					//Retrieve ALL publication Records
 					ResultSet rSet = dao.getAllPublications();
