@@ -135,9 +135,17 @@ public class Customer {
 	{
 		int customerLength = String.valueOf(custPhoneNumber).length();
 		// Verify that there is a customer's phone number and its 9 characters.
-		if(customerLength != 9) 
+		if(customerLength > 9) 
 		{
-			throw new CustomerHandler("Customer phone number has to be 9 digits.");
+			throw new CustomerHandler("Customer phone number can't be more than 9 digits.");
+		}
+		else if (customerLength < 9  && customerLength > 1) 
+		{
+			throw new CustomerHandler("Customer phone number can't be less than 9 digits.");
+		}
+		else if (customerLength == 1) 
+		{
+			throw new CustomerHandler("Customer phone number can't be empty");
 		}
 
 	}

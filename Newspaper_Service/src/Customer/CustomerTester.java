@@ -176,11 +176,11 @@ public void testCustomer001() {
 		try {
 			
 			//Call method under test
-			Customer.validatePhone(1);
+			Customer.validatePhone(12345678);
 			fail("Exception not expected");
 		}
 		catch (CustomerHandler e) {
-			assertEquals("Customer phone number cannot be less than 9 characters.", e.getMessage());
+			assertEquals("Customer phone number can't be less than 9 digits.", e.getMessage());
 		}
 		
 	}
@@ -189,7 +189,7 @@ public void testCustomer001() {
 	Test #: 9
 	Test Objective: Catch invalid customer phone number
 	Inputs: name = 1234567891
-	Expected Output: Exception Message -> "Customer phone number cannot be more than 9 characters."
+	Expected Output: Exception Message -> "Customer phone number can't be more than 9 digits."
 	*/
 	
 	public void testValidatePhoneNo002() throws CustomerHandler {
@@ -202,7 +202,7 @@ public void testCustomer001() {
 			fail("Exception not expected");
 		}
 		catch (CustomerHandler e) {
-			assertEquals("Customer phone number cannot be more than 9 characters.", e.getMessage());
+			assertEquals("Customer phone number can't be more than 9 digits.", e.getMessage());
 		}
 		
 	}
@@ -218,7 +218,7 @@ public void testCustomer001() {
 	        Customer.validatePhone(0);  // Assuming validatePhone accepts a String
 	        fail("Exception expected for empty phone number");
 	    } catch (CustomerHandler e) {
-	        assertEquals("Customer phone number cannot be blank", e.getMessage());
+	        assertEquals("Customer phone number can't be empty", e.getMessage());
 	    }
 	}
 	
@@ -234,15 +234,6 @@ public void testCustomer001() {
 	    Customer.validateAddress("1234567890123456789012345");  // Upper boundary valid case (25 characters)
 	}
 
-	@Test(expected = CustomerHandler.class)
-	public void testLowerBoundaryInvalidphoneNumber() throws CustomerHandler {
-	    Customer.validatePhone(8);  // Just below lower boundary (invalid)
-	}
-
-	@Test(expected = CustomerHandler.class)
-	public void testUpperBoundaryInvalidAge() throws CustomerHandler {
-	    Customer.validatePhone(10);  // Just above upper boundary (invalid)
-	}
 
 
 	
